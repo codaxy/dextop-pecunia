@@ -1,0 +1,26 @@
+﻿@model Pecunia.Models.AppConfig
+@{
+    ViewBag.Title = "Dextop Sample Application";
+}
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>@ViewBag.Title</title>            
+    @foreach (var css in Model.CssFiles)
+    { 
+        <link href="@css" rel="stylesheet" type="text/css" /> 
+    }
+    
+    @foreach (var js in Model.JsFiles)
+    {
+        <script src="@js" type="text/javascript"></script>    
+    }
+</head>
+<body>           
+    <script type="text/javascript">       
+        Ext.onReady(function() {            
+            Dextop.Session.initialize(@Html.Raw(Model.SessionConfig));
+        });
+    </script>    
+</body>
+</html>

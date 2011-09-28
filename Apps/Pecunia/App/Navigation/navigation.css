@@ -1,0 +1,32 @@
+﻿/* Welcome panel */
+
+.welcome-navigation-pane
+{    
+    margin: 10px 0px 0px 10px;
+    border: 1px solid #C0C0C0;
+    text-align: center;
+    float: left;    
+    width: 128px;
+    height: 128px;
+    font-family: Verdana;    
+}
+
+.welcome-navigation-pane.x-item-over
+{
+    background-color: #FFFFB9;
+}
+
+
+.account
+{
+    background-position: center center;
+    background-image: url('icons/account.png');
+    background-repeat: no-repeat;
+}
+
+.accounting
+{
+    background-position: center center;
+    background-image: url('icons/accounting.png');
+    background-repeat: no-repeat;
+}

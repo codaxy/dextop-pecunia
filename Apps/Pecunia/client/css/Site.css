@@ -1,0 +1,39 @@
+#header
+{
+    padding: 5px;
+}
+
+#header h1 
+{
+    font-family: 'Trebuchet MS';
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+#footer
+{
+    padding: 2px;
+    border-top: 1px solid #6699FF;
+    border-top-color: #A0B6FE;
+}
+
+/* ------------------------------ Menu Bar ---------------------------------- */
+
+.menu-item
+{
+	width: 160px;
+	height: 55px;
+	overflow: hidden;
+  	font-size:10px;
+	margin:5px;
+	cursor: pointer;
+	text-align:center;
+}
+
+#menu-item-text
+{
+	font-family: "Comic Sans MS";
+	font-size: 12px;
+	text-align:center;
+}
+

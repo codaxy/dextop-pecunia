@@ -1,0 +1,9 @@
+
+*.suo
+*.user
+bin
+obj
+packages/*/
+Nuget/*.nupkg
+Nuget/*/lib
+ext
