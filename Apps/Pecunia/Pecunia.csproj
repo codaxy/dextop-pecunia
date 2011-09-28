@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Panels\Courses\CoursesPanel.cs" />
     <Compile Include="App\Session.cs" />
     <Compile Include="App\UsersPanel.cs" />
     <Compile Include="Application.cs" />
@@ -94,6 +95,7 @@
     <Content Include="App\Navigation\icons\shares.png" />
     <Content Include="App\Navigation\navigation.css" />
     <Content Include="App\Navigation\NavigationBar.js" />
+    <Content Include="App\Panels\Courses\CoursesPanel.js" />
     <Content Include="App\UsersPanel.js" />
     <Content Include="App\Session.js" />
     <Content Include="browse.htm" />
@@ -153,6 +155,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\Panels\Contacts\" />
+    <Folder Include="App\Panels\Reports\" />
+    <Folder Include="App\Panels\Stocks\" />
+    <Folder Include="App\Panels\Transactions\" />
     <Folder Include="client\js\cache\" />
     <Folder Include="client\js\generated\" />
   </ItemGroup>

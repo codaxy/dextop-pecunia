@@ -18,7 +18,7 @@
                 type: 'memory',
                 data: [{
                     title: 'Manage Domains',
-                    type: '',
+                    type: 'courses',
                     iconCls: 'account'
                 }, {
                     title: 'Manage Users',

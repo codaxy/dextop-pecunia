@@ -7,3 +7,7 @@ Ext.define('Pecunia.Session.remoting.Proxy', {
 	CreatePanel: function(panelName, callback, scope) { this.invokeRemoteMethod(callback, scope, 'CreatePanel', [panelName]);}
 });
 
+Ext.define('Pecunia.CoursesPanel.remoting.Proxy', {
+	extend: 'Dextop.Window.remoting.Proxy'
+});
+
