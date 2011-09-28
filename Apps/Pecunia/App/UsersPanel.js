@@ -20,7 +20,10 @@
 			editingOptions: {
 				clicksToEdit: 1
 			}
-		});
+});
+
+
+
 
 		Ext.apply(this, {
 			layout: 'fit',
