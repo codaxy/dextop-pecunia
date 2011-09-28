@@ -1,4 +1,4 @@
-Ext.define('Pecunia.UsersPanel.columns.User', {
+Ext.define('Pecunia.CoursesPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
 		var dict = {};
@@ -37,7 +37,7 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
 });
-Ext.define('Pecunia.CoursesPanel.columns.User', {
+Ext.define('Pecunia.UsersPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
 		var dict = {};

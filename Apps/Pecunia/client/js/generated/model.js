@@ -1,4 +1,4 @@
-Ext.define('Pecunia.UsersPanel.model.User',
+Ext.define('Pecunia.CoursesPanel.model.User',
 {
 	extend: 'Ext.data.Model',
 	fields: [{
@@ -24,7 +24,7 @@ Ext.define('Pecunia.UsersPanel.model.User',
 	}],
 	idProperty: 'Id'
 });
-Ext.define('Pecunia.CoursesPanel.model.User',
+Ext.define('Pecunia.UsersPanel.model.User',
 {
 	extend: 'Ext.data.Model',
 	fields: [{
