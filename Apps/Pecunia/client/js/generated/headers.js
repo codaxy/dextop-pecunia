@@ -37,42 +37,35 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
 });
-Ext.define('Pecunia.CoursesPanel.columns.User', {
+Ext.define('Pecunia.columns.Rate', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
 		var dict = {};
-		dict["Active"] = {
-			text: this.ActiveText,
-			width: 50,
-			dataIndex: 'Active',
-			type: 'boolean'
+		dict["Currency"] = {
+			text: this.CurrencyText,
+			width: 200,
+			dataIndex: 'Currency',
+			type: 'string'
 		};
-		dict["Username"] = {
-			text: this.UsernameText,
+		dict["ISOCode"] = {
+			text: this.ISOCodeText,
 			width: 100,
-			dataIndex: 'Username',
+			dataIndex: 'ISOCode',
 			type: 'string'
 		};
-		dict["DisplayName"] = {
-			text: this.DisplayNameText,
-			width: 150,
-			dataIndex: 'DisplayName',
-			type: 'string'
-		};
-		dict["EMail"] = {
-			text: this.EMailText,
-			width: 150,
-			dataIndex: 'EMail',
-			type: 'string'
+		dict["Value"] = {
+			text: this.ValueText,
+			width: 100,
+			dataIndex: 'Value',
+			type: 'float'
 		};
 		return dict;
 
 	},
 	buildItems: function(dict){
-		return [dict['Active'], dict['Username'], dict['DisplayName'], dict['EMail']];
+		return [dict['Currency'], dict['ISOCode'], dict['Value']];
 	},
-	ActiveText: 'Active',
-	UsernameText: 'Username',
-	DisplayNameText: 'Display Name',
-	EMailText: 'EMail'
+	CurrencyText: 'Currency',
+	ISOCodeText: 'ISO Code',
+	ValueText: 'Rate'
 });

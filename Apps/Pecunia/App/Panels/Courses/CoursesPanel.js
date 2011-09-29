@@ -1,84 +1,85 @@
 ﻿Ext.define('Pecunia.CoursesPanel', {
-	extend: 'Dextop.Panel',
+    extend: 'Dextop.Panel',
 
-	title: 'Courses',
-	border: false,
-	closable: true,
+    title: 'Courses',
+    border: false,
+    closable: true,
 
+    initComponent: function () {
 
-	initComponent: function () {
-
-	    var simple = Ext.create('Ext.form.Panel', {
-            region:'west',
-	        url: 'save-form.php',
-	        frame: true,
+        var grid = Ext.create('Dextop.ux.SwissArmyGrid', {
+            region: 'center',
             split: true,
-	        title: 'Simple Form',
-	        bodyStyle: 'padding:5px 5px 0',
-	        width: 350,
-	        fieldDefaults: {
-	            msgTarget: 'side',
-	            labelWidth: 75
-	        },
-	        defaultType: 'textfield',
-	        defaults: {
-	            anchor: '100%'
-	        },
-
-	        items: [{
-	            xtype: 'ti',
-	            fieldLabel: 'Time',
-	            name: 'time',
-	            minValue: '8:00am',
-	            maxValue: '6:00pm'
-	        }, {
-	            fieldLabel: 'First Name',
-	            name: 'first',
-	            allowBlank: false
-	        }, {
-	            fieldLabel: 'Last Name',
-	            name: 'last'
-	        }, {
-	            fieldLabel: 'Company',
-	            name: 'company'
-	        }, {
-	            fieldLabel: 'Email',
-	            name: 'email',
-	            vtype: 'email'
-	        }],
-
-	        buttons: [{
-	            text: 'Save'
-	        }, {
-	            text: 'Cancel'
-	        }]
-	    });
-   
-	    var grid = Ext.create('Dextop.ux.SwissArmyGrid', {
-			remote: this.remote,
-			paging: true,
-			border: false,
-            split: true,
-			region: 'center',
-            width: 250,
-			editing: 'row',
-			tbar: ['add', 'edit', 'remove'],
-			storeOptions: {
-				pageSize: 10,
-				autoLoad: true,
-				autoSync: true
-			},
-			editingOptions: {
-				clicksToEdit: 1
-			}
+            flex: 1,
+            remote: this.remote,
+            border: false,
+            paging: false,
+            storeOptions: {
+                autoLoad: true,
+                autoSync: false
+            }
         });
 
-	    Ext.apply(this, {
-	        layout: 'border',
-            items: [grid, simple]
-	    });
+        // ---
 
-	this.callParent(arguments);
-	
+        var formFields = Ext.create('Pecunia.form.ConvertionForm').getItems({
+            remote: this.remote
+        });
+
+        var calcForm = Ext.create('Ext.form.Panel', {
+            xtype: 'form',
+            split: true,
+            flex: 1,
+            region: 'south',
+            itemId: 'form',
+            border: false,
+            items: formFields,
+            buttons: [{
+                text: 'Send',
+                scope: this,
+                handler: function () {
+                    var form = this.getComponent('form');
+                    if (!form.getForm().isValid())
+                        return;
+                    var data = form.getForm().getFieldValues();
+                    this.remote.Send(data, {
+                        type: 'alert',
+                        success: function () {
+                            Dextop.infoAlert('Form has been successfully submited.');
+                        }
+                    });
+                }
+            }]
+        });
+
+
+        var gridCalc = Ext.create('Dextop.ux.SwissArmyGrid', {
+            remote: this.remote,
+            region: 'south',
+            border: false,
+            paging: false,
+            storeOptions: {
+                autoLoad: true,
+                autoSync: false
+            },
+            split: true,
+            region: 'center',
+            flex: 1
+        });
+
+        Ext.apply(this, {
+            layout: 'border',
+            items: [{
+                xtype: 'panel',
+                region: 'west',
+                layout: 'border',
+                width: 400,
+                split: true,
+                items: [calcForm, gridCalc]
+            }, grid]
+        });
+
+        this.callParent(arguments);
+
     }
 });

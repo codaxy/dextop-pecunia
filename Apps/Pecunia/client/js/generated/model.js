@@ -24,7 +24,7 @@ Ext.define('Pecunia.UsersPanel.model.User',
 	}],
 	idProperty: 'Id'
 });
-Ext.define('Pecunia.CoursesPanel.model.User',
+Ext.define('Pecunia.model.Rate',
 {
 	extend: 'Ext.data.Model',
 	fields: [{
@@ -32,20 +32,16 @@ Ext.define('Pecunia.CoursesPanel.model.User',
 		type: 'int',
 		useNull: true
 	}, {
-		name: 'Active',
-		type: 'boolean',
-		useNull: true
-	}, {
-		name: 'Username',
+		name: 'Currency',
 		type: 'string',
 		useNull: true
 	}, {
-		name: 'DisplayName',
+		name: 'ISOCode',
 		type: 'string',
 		useNull: true
 	}, {
-		name: 'EMail',
-		type: 'string',
+		name: 'Value',
+		type: 'float',
 		useNull: true
 	}],
 	idProperty: 'Id'

@@ -159,6 +159,7 @@
     <Folder Include="App\Panels\Reports\" />
     <Folder Include="App\Panels\Stocks\" />
     <Folder Include="App\Panels\Transactions\" />
+    <Folder Include="bin\" />
     <Folder Include="client\js\cache\" />
     <Folder Include="client\js\generated\" />
   </ItemGroup>
