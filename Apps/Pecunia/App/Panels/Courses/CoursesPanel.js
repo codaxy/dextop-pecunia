@@ -42,10 +42,10 @@
                     if (!form.getForm().isValid())
                         return;
                     var data = form.getForm().getFieldValues();
-                    this.remote.Send(data, {
+                    this.remote.Convert(data, {
                         type: 'alert',
-                        success: function () {
-                            Dextop.infoAlert('Form has been successfully submited.');
+                        success: function (result) {
+                            Dextop.infoAlert(result);
                         }
                     });
                 }

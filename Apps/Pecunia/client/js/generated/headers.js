@@ -1,3 +1,46 @@
+Ext.define('Pecunia.columns.Rate', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Currency"] = {
+			text: this.CurrencyText,
+			width: 200,
+			dataIndex: 'Currency',
+			type: 'string'
+		};
+		dict["ISOCode"] = {
+			text: this.ISOCodeText,
+			width: 100,
+			dataIndex: 'ISOCode',
+			type: 'string'
+		};
+		dict["Value"] = {
+			text: this.ValueText,
+			width: 100,
+			dataIndex: 'Value',
+			type: 'float'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Currency'], dict['ISOCode'], dict['Value']];
+	},
+	CurrencyText: 'Currency',
+	ISOCodeText: 'ISO Code',
+	ValueText: 'Rate'
+});
+Ext.define('Pecunia.columns.SampleConvertion', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [];
+	}
+});
 Ext.define('Pecunia.UsersPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
@@ -36,36 +79,4 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	UsernameText: 'Username',
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
-});
-Ext.define('Pecunia.columns.Rate', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Currency"] = {
-			text: this.CurrencyText,
-			width: 200,
-			dataIndex: 'Currency',
-			type: 'string'
-		};
-		dict["ISOCode"] = {
-			text: this.ISOCodeText,
-			width: 100,
-			dataIndex: 'ISOCode',
-			type: 'string'
-		};
-		dict["Value"] = {
-			text: this.ValueText,
-			width: 100,
-			dataIndex: 'Value',
-			type: 'float'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Currency'], dict['ISOCode'], dict['Value']];
-	},
-	CurrencyText: 'Currency',
-	ISOCodeText: 'ISO Code',
-	ValueText: 'Rate'
 });

@@ -4,17 +4,11 @@ Ext.define('Pecunia.form.ConvertionForm', {
 		options = options || {};
 		options.data = options.data || {};
 		var dict = {};
-		dict["From"] = {
-			name: 'From',
+		dict["Amount"] = {
+			name: 'Amount',
 			xtype: 'textfield',
-			value: options.data['From'],
-			fieldLabel: 'From'
-		};
-		dict["To"] = {
-			name: 'To',
-			xtype: 'textfield',
-			value: options.data['To'],
-			fieldLabel: 'To'
+			value: options.data['Amount'],
+			fieldLabel: 'Amount'
 		};
 		dict["FromCurrency"] = {
 			name: 'FromCurrency',
@@ -44,7 +38,11 @@ Ext.define('Pecunia.form.ConvertionForm', {
 
 	},
 	buildItems: function(dict){
-		return [dict['From'], dict['To'], dict['FromCurrency'], dict['ToCurrency']];
+		return [{
+			xtype: 'fieldset',
+			title: 'Convertion Information',
+			items: [dict['Amount'], dict['FromCurrency'], dict['ToCurrency']]
+		}];
 	}
 });
 

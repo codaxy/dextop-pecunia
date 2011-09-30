@@ -34,6 +34,9 @@ namespace Pecunia.App
             Crud crud = new Crud(rates);
             Remote.AddStore("model", crud);
 
+            SamplesCrud samplesCrud = new SamplesCrud();
+            Remote.AddStore("", samplesCrud);
+
             Remote.AddLookupData("Currency", rates.Select(a=> new Object[]{ a.Id, a.Currency } ).ToArray() );
 
         }
@@ -74,6 +77,19 @@ namespace Pecunia.App
             }
             return null;
         }
+
+        [DextopRemotable]
+        public double Convert(ConvertionForm form)
+        {
+
+            return 1.0;
+        }
+
+        [DextopRemotable]
+        public void updateSampleRate(Rate rate) { 
+        
+        }
+
     }
 
     class Crud : DextopDataProxy<Rate>
@@ -99,6 +115,42 @@ namespace Pecunia.App
         }
     }
 
+    class SamplesCrud : DextopDataProxy<ConvertionSample> 
+    {
+        SortedDictionary<int, ConvertionSample> list = new SortedDictionary<int, ConvertionSample>();
+        int id = 0;
+
+        public SamplesCrud() {
+            addSample(new ConvertionSample("One", 1));
+            addSample(new ConvertionSample("Ten", 10));
+            addSample(new ConvertionSample("Fifty", 50));
+            addSample(new ConvertionSample("Hundred", 100));
+            addSample(new ConvertionSample("Five hundred", 500));
+            addSample(new ConvertionSample("Thousand", 1000));
+            addSample(new ConvertionSample("Five thousand", 5000));
+            addSample(new ConvertionSample("Ten thousand", 10000));
+            addSample(new ConvertionSample("Hungred thousand", 100000));
+            addSample(new ConvertionSample("Million", 1000000 ));
+            updateRate(1);
+        }
+
+        public void updateRate(double rate){
+            foreach(var sample in list)
+                sample.Value.Value = sample.Value.Euro * rate;
+        }
+
+        public void addSample(ConvertionSample rate)
+        {
+            rate.Id = ++id;
+            list.Add(rate.Id, rate);
+        }
+       
+        public override DextopReadResult<ConvertionSample> Read(DextopReadFilter filter)
+        {
+            return DextopReadResult.CreatePage(list.Values.AsQueryable(), filter);
+        }
+    
+    }
 
     [DextopModel]
     [DextopGrid]
@@ -116,16 +168,38 @@ namespace Pecunia.App
         public Double Value { get; set; }
     }
 
+    [DextopModel]
+    [DextopGrid]
+    class ConvertionSample
+    {
+
+        public ConvertionSample(String unit, int euro) 
+        {
+            Unit = unit;
+            Euro = euro;
+        }
+
+        public int Id { get; set; }
+
+        [DextopGridColumn(width = 200, text = "Unit")]
+        public String Unit { get; set; }
+
+        [DextopGridColumn(width = 100, text = "€")]
+        public int Euro { get; set; }
+
+        [DextopGridColumn(width = 100, text = "Foreign")]
+        public double Value { get; set; }
+
+    }
+
 
     [DextopForm]
-    class ConvertionForm
+    public class ConvertionForm
     {
-     
-        [DextopFormField]
-        public String From          { get; set; }
 
+        [DextopFormFieldSet(0, title = "Convertion Information", collapsible = false)]
         [DextopFormField]
-        public String To            { get; set; }
+        public String Amount          { get; set; }
 
         [DextopFormLookupCombo(lookupId="Currency")]
         public string FromCurrency        { get; set; }
@@ -135,4 +209,7 @@ namespace Pecunia.App
 
     }
 
+
+
+  
 }
