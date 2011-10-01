@@ -9,207 +9,77 @@ using System.Xml.Linq;
 using System.Globalization;
 using System.Xml;
 using Codaxy.Dextop.Forms;
+using Pecunia.Services;
+using Codaxy.Common;
 
 namespace Pecunia.App
 {
     public class CoursesPanel : DextopWindow
     {
-
-        /// <summary>Daly courses (Mo-Fr) of the European Central Bank</summary>
-        private String uriDailyXml = "http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml";
-
-        private List<Rate> rates;
-
         [DextopRemotableConstructor(alias = "courses")]
         public CoursesPanel()
         {
-            // load the rates 
-            rates = loadCourses();
+            
         }
 
         public override void InitRemotable(DextopRemote remote, DextopConfig config)
         {
-            base.InitRemotable(remote, config);
-
-            Crud crud = new Crud(rates);
-            Remote.AddStore("model", crud);
-
-            SamplesCrud samplesCrud = new SamplesCrud();
-            Remote.AddStore("", samplesCrud);
-
-            Remote.AddLookupData("Currency", rates.Select(a=> new Object[]{ a.Id, a.Currency } ).ToArray() );
-
+            base.InitRemotable(remote, config);			
+            Remote.AddStore("model", Load);
+			Remote.AddLookupData("Currency", CurrencyService.GetCurrencyList().Rates.Select(a => new Object[] { 
+				a.ISOCode, String.Format("{0} ({1})", a.Currency, a.ISOCode) }).ToArray());
+			config["convertData"] = new ConvertForm
+			{
+				Amount = 100,
+				Currency = "EUR"
+			};
         }
 
-        private List<Rate> loadCourses()
-        {
-            System.Xml.Linq.XElement cubes = XElement.Load(uriDailyXml);
-            var cubs =
-              from el in cubes.Descendants()
-              where el.Name.LocalName == "Cube" &&
-                    el.Attribute("time") != null
-              select new
-              {
-                  Date = DateTime.Parse(el.Attribute("time").Value),
-                  Rate =
-                    from d in el.Descendants()
-                    select new Rate
-                    {
-                        Currency = CurrencyName(d.Attribute("currency").Value),
-                        ISOCode = d.Attribute("currency").Value,
-                        Value = XmlConvert.ToDouble(d.Attribute("rate").Value)
-                    }
-              };
-            List<Rate> rates = new List<Rate>();
-            foreach (var rate in cubs.ToList()[0].Rate)
-                rates.Add(rate);
-            return rates;
-        }
+		RateModel[] Load(DextopReadFilter filter)
+		{			
+			var currency = filter.Params.SafeGet("Currency", "EUR");
+			var amount = filter.Params.SafeGet("Amount", 100.0m);
 
-        CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+			var data = CurrencyService.GetCurrencyList(currency);
+			return data.Rates.Select(a => new RateModel
+			{
+				Currency = a.Currency,
+				ISOCode = a.ISOCode,
+				Rate = a.Rate,
+				Amount = amount * a.Rate
+			}).ToArray();
+		}
 
-        protected string CurrencyName(string isoCode)
-        {
-            foreach (CultureInfo ci in cultures)
-            {
-                RegionInfo ri = new RegionInfo(ci.LCID);
-                if (ri.ISOCurrencySymbol == isoCode) return ri.CurrencyEnglishName;
-            }
-            return null;
-        }
+		[DextopModel]
+		[DextopGrid]
+		class RateModel
+		{
 
-        [DextopRemotable]
-        public double Convert(ConvertionForm form)
-        {
+			[DextopGridColumn(width = 200, text = "Currency")]
+			public String Currency { get; set; }
 
-            return 1.0;
-        }
+			[DextopGridColumn(width = 100, text = "Rate")]
+			public decimal? Rate { get; set; }
 
-        [DextopRemotable]
-        public void updateSampleRate(Rate rate) { 
-        
-        }
+			[DextopGridColumn(text = "Equals", renderer = "money")]
+			public decimal? Amount { get; set; }
 
+			[DextopModelId]
+			[DextopGridColumn(width = 100, text = "ISO Code")]
+			public String ISOCode { get; set; }
+		}
+
+		[DextopForm]
+		public class ConvertForm
+		{
+			[DextopFormField(labelAlign = "top", width=100)]
+			public double Amount { get; set; }		
+
+			[DextopFormLookupCombo(lookupId = "Currency", labelAlign="top", width=200)]
+			public string Currency { get; set; }
+		}
     }
-
-    class Crud : DextopDataProxy<Rate>
-    {
-        SortedDictionary<int, Rate> list = new SortedDictionary<int, Rate>();
-        int id = 0;
-
-        public Crud(List<Rate> rates)
-        {
-            foreach (var rate in rates)
-                addRate(rate);
-        }
-
-        public void addRate(Rate rate)
-        {
-            rate.Id = ++id;
-            list.Add(rate.Id, rate);
-        }
-       
-        public override DextopReadResult<Rate> Read(DextopReadFilter filter)
-        {
-            return DextopReadResult.CreatePage(list.Values.AsQueryable(), filter);
-        }
-    }
-
-    class SamplesCrud : DextopDataProxy<ConvertionSample> 
-    {
-        SortedDictionary<int, ConvertionSample> list = new SortedDictionary<int, ConvertionSample>();
-        int id = 0;
-
-        public SamplesCrud() {
-            addSample(new ConvertionSample("One", 1));
-            addSample(new ConvertionSample("Ten", 10));
-            addSample(new ConvertionSample("Fifty", 50));
-            addSample(new ConvertionSample("Hundred", 100));
-            addSample(new ConvertionSample("Five hundred", 500));
-            addSample(new ConvertionSample("Thousand", 1000));
-            addSample(new ConvertionSample("Five thousand", 5000));
-            addSample(new ConvertionSample("Ten thousand", 10000));
-            addSample(new ConvertionSample("Hungred thousand", 100000));
-            addSample(new ConvertionSample("Million", 1000000 ));
-            updateRate(1);
-        }
-
-        public void updateRate(double rate){
-            foreach(var sample in list)
-                sample.Value.Value = sample.Value.Euro * rate;
-        }
-
-        public void addSample(ConvertionSample rate)
-        {
-            rate.Id = ++id;
-            list.Add(rate.Id, rate);
-        }
-       
-        public override DextopReadResult<ConvertionSample> Read(DextopReadFilter filter)
-        {
-            return DextopReadResult.CreatePage(list.Values.AsQueryable(), filter);
-        }
     
-    }
 
-    [DextopModel]
-    [DextopGrid]
-    class Rate
-    {
-        public int Id { get; set; }
-
-        [DextopGridColumn(width = 200, text = "Currency")]
-        public String Currency { get; set; }
-
-        [DextopGridColumn(width = 100, text = "ISO Code")]
-        public String ISOCode { get; set; }
-
-        [DextopGridColumn(width = 100, text = "Rate")]
-        public Double Value { get; set; }
-    }
-
-    [DextopModel]
-    [DextopGrid]
-    class ConvertionSample
-    {
-
-        public ConvertionSample(String unit, int euro) 
-        {
-            Unit = unit;
-            Euro = euro;
-        }
-
-        public int Id { get; set; }
-
-        [DextopGridColumn(width = 200, text = "Unit")]
-        public String Unit { get; set; }
-
-        [DextopGridColumn(width = 100, text = "€")]
-        public int Euro { get; set; }
-
-        [DextopGridColumn(width = 100, text = "Foreign")]
-        public double Value { get; set; }
-
-    }
-
-
-    [DextopForm]
-    public class ConvertionForm
-    {
-
-        [DextopFormFieldSet(0, title = "Convertion Information", collapsible = false)]
-        [DextopFormField]
-        public String Amount          { get; set; }
-
-        [DextopFormLookupCombo(lookupId="Currency")]
-        public string FromCurrency        { get; set; }
-
-        [DextopFormLookupCombo(lookupId = "Currency")]
-        public string ToCurrency        { get; set; }      
-
-    }
-
-
-
-  
+    
 }

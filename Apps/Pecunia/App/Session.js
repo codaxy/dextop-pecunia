@@ -4,24 +4,25 @@
 
 	initSession: function () {
 
+		Dextop.data.RendererFactory.register('money', Ext.util.Format.numberRenderer('0.00'));
+
         // The navigation panel on the left side
         var navigation = new Pecunia.navigation.NavigationBar({
-            region: 'west',
-            split: true,
-            width: 150,
-            border: false,
-            collapsible: true
+            region: 'west',              
+            border: true,
+			margins: '5 5 5 5',
+            collapseMode: 'mini'
         });
 
         this.tabs = Ext.create('Ext.tab.Panel', {
-			border: false,
+			border: true,
+			plain: true,
 			region: 'center',
+			margins: '5 5 5 0',
 			items: [{
 				title: 'Welcome',
-				loader: {
-					url: 'welcome.htm',
-					autoLoad: true
-				},
+				xtype: 'iframebox',
+				src: 'Content/Article/Welcome',
 				border: false
 			}]
 		});
@@ -30,17 +31,16 @@
 			renderTo: document.body,
 			layout: 'border',
 			items: [navigation, {
-				id: 'header',
+				el: 'header',
 				region: 'north',
 				height: 50,
-				xtype: 'container',
-				html: '<h1>Tabs (Template)<h1>'
+				xtype: 'container'
 			}, this.tabs, {
-				id: 'footer',
+				el: 'footer',
 				region: 'south',
 				height: 20,
 				xtype: 'container',
-				html: 'Footer'
+				border: false				
 			}]
 		});
 

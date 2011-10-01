@@ -1,11 +1,6 @@
 ﻿Ext.define('Pecunia.navigation.NavigationBar', {
-    extend: 'Ext.panel.Panel',
-
-    title: 'Menu',
-
-    width: 200,
-    autoHeight: true,
-
+	extend: 'Ext.panel.Panel',
+	width: 150,
     initComponent: function () {
 
         var store = Ext.create('Ext.data.Store', {
@@ -28,8 +23,7 @@
             }
         });
 
-        Ext.apply(this, {
-            border: false,
+        Ext.apply(this, {            
             layout: 'fit',
             items: [{
                 xtype: 'dataview',

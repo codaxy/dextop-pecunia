@@ -1,34 +1,24 @@
-Ext.define('Pecunia.model.Rate',
+Ext.define('Pecunia.CoursesPanel.model.RateModel',
 {
 	extend: 'Ext.data.Model',
 	fields: [{
-		name: 'Id',
-		type: 'int',
-		useNull: true
-	}, {
 		name: 'Currency',
 		type: 'string',
+		useNull: true
+	}, {
+		name: 'Rate',
+		type: 'float',
+		useNull: true
+	}, {
+		name: 'Amount',
+		type: 'float',
 		useNull: true
 	}, {
 		name: 'ISOCode',
 		type: 'string',
 		useNull: true
-	}, {
-		name: 'Value',
-		type: 'float',
-		useNull: true
 	}],
-	idProperty: 'Id'
-});
-Ext.define('Pecunia.model.SampleConvertion',
-{
-	extend: 'Ext.data.Model',
-	fields: [{
-		name: 'Id',
-		type: 'int',
-		useNull: true
-	}],
-	idProperty: 'Id'
+	idProperty: 'ISOCode'
 });
 Ext.define('Pecunia.UsersPanel.model.User',
 {

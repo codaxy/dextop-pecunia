@@ -1,4 +1,4 @@
-Ext.define('Pecunia.form.ConvertionForm', {
+Ext.define('Pecunia.CoursesPanel.form.ConvertForm', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(options){
 		options = options || {};
@@ -7,26 +7,18 @@ Ext.define('Pecunia.form.ConvertionForm', {
 		dict["Amount"] = {
 			name: 'Amount',
 			xtype: 'textfield',
+			width: 100,
 			value: options.data['Amount'],
-			fieldLabel: 'Amount'
+			fieldLabel: 'Amount',
+			labelAlign: 'top'
 		};
-		dict["FromCurrency"] = {
-			name: 'FromCurrency',
+		dict["Currency"] = {
+			name: 'Currency',
 			xtype: 'combo',
-			value: options.data['FromCurrency'],
-			fieldLabel: 'FromCurrency',
-			store: options.remote.createStore('Currency'),
-			valueField: 'id',
-			queryMode: 'local',
-			forceSelection: true,
-			disableKeyFilter: true,
-			editable: false
-		};
-		dict["ToCurrency"] = {
-			name: 'ToCurrency',
-			xtype: 'combo',
-			value: options.data['ToCurrency'],
-			fieldLabel: 'ToCurrency',
+			width: 200,
+			value: options.data['Currency'],
+			fieldLabel: 'Currency',
+			labelAlign: 'top',
 			store: options.remote.createStore('Currency'),
 			valueField: 'id',
 			queryMode: 'local',
@@ -38,11 +30,7 @@ Ext.define('Pecunia.form.ConvertionForm', {
 
 	},
 	buildItems: function(dict){
-		return [{
-			xtype: 'fieldset',
-			title: 'Convertion Information',
-			items: [dict['Amount'], dict['FromCurrency'], dict['ToCurrency']]
-		}];
+		return [dict['Amount'], dict['Currency']];
 	}
 });
 
