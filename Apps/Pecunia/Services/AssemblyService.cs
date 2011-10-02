@@ -10,7 +10,8 @@ namespace Pecunia.Services
 		public static String GetVersionNumber()
 		{
 			var v = typeof(AssemblyService).Assembly.GetName().Version;
-			return String.Format("{0}.{1}.{2}", v.Major, v.Minor, v.Build);
+			return v.ToString();
+			//return String.Format("{0}.{1}.{2}", v.Major, v.Minor, v.Build);
 		}
 	}
 }

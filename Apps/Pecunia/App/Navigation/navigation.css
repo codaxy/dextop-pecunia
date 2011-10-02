@@ -1,14 +1,18 @@
 ﻿/* Welcome panel */
 
 .welcome-navigation-pane
-{    
+{
     margin: 10px 0px 0px 10px;
-    border: 1px solid #C0C0C0;
+    -border: 1px solid #C0C0C0;
     text-align: center;
-    float: left;    
+    float: left;
     width: 128px;
     height: 128px;
-    font-family: Verdana;    
+    font-family: Verdana;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    padding-top: 5px;
+    background-color: #F6F6F6;
 }
 
 .welcome-navigation-pane.x-item-over

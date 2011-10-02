@@ -22,7 +22,7 @@ Ext.define('Pecunia.CoursesPanel.columns.RateModel', {
 		};
 		dict["ISOCode"] = {
 			text: this.ISOCodeText,
-			width: 100,
+			width: 50,
 			dataIndex: 'ISOCode',
 			type: 'string'
 		};
@@ -34,8 +34,8 @@ Ext.define('Pecunia.CoursesPanel.columns.RateModel', {
 	},
 	CurrencyText: 'Currency',
 	RateText: 'Rate',
-	AmountText: 'Equals',
-	ISOCodeText: 'ISO Code'
+	AmountText: 'Amount',
+	ISOCodeText: 'ISO'
 });
 Ext.define('Pecunia.UsersPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',

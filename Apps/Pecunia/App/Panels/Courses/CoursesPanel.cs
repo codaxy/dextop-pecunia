@@ -28,6 +28,7 @@ namespace Pecunia.App
             Remote.AddStore("model", Load);
 			Remote.AddLookupData("Currency", CurrencyService.GetCurrencyList().Rates.Select(a => new Object[] { 
 				a.ISOCode, String.Format("{0} ({1})", a.Currency, a.ISOCode) }).ToArray());
+			
 			config["convertData"] = new ConvertForm
 			{
 				Amount = 100,
@@ -39,7 +40,7 @@ namespace Pecunia.App
 		{			
 			var currency = filter.Params.SafeGet("Currency", "EUR");
 			var amount = filter.Params.SafeGet("Amount", 100.0m);
-
+			
 			var data = CurrencyService.GetCurrencyList(currency);
 			return data.Rates.Select(a => new RateModel
 			{
@@ -61,11 +62,11 @@ namespace Pecunia.App
 			[DextopGridColumn(width = 100, text = "Rate")]
 			public decimal? Rate { get; set; }
 
-			[DextopGridColumn(text = "Equals", renderer = "money")]
+			[DextopGridColumn(renderer = "money")]
 			public decimal? Amount { get; set; }
 
 			[DextopModelId]
-			[DextopGridColumn(width = 100, text = "ISO Code")]
+			[DextopGridColumn(width = 50, text = "ISO")]
 			public String ISOCode { get; set; }
 		}
 
@@ -73,9 +74,9 @@ namespace Pecunia.App
 		public class ConvertForm
 		{
 			[DextopFormField(labelAlign = "top", width=100)]
-			public double Amount { get; set; }		
+			public double Amount { get; set; }
 
-			[DextopFormLookupCombo(lookupId = "Currency", labelAlign="top", width=200)]
+			[DextopFormLookupCombo(labelAlign="top", width=200)]
 			public string Currency { get; set; }
 		}
     }

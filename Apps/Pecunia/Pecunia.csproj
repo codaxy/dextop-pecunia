@@ -102,8 +102,11 @@
     <Content Include="App\UsersPanel.js" />
     <Content Include="App\Session.js" />
     <Content Include="browse.htm" />
+    <Content Include="client\css\Content.css" />
+    <Content Include="client\css\images\glossymetal.jpg" />
     <Content Include="client\js\controls\iframe.js" />
     <Content Include="client\js\controls\Item.js" />
+    <Content Include="client\js\controls\NavigationPanel.js" />
     <Content Include="client\lib\dextop\css\dextop.css" />
     <Content Include="client\lib\dextop\images\icons\add.png" />
     <Content Include="client\lib\dextop\images\icons\delete.png" />
@@ -171,6 +174,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Content\Welcome.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ContentLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\_ViewStart.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

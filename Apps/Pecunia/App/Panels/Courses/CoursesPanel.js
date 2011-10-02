@@ -8,10 +8,11 @@
 	initComponent: function () {
 
 		var grid = Ext.create('Dextop.ux.SwissArmyGrid', {
-			region: 'center',			
+			region: 'center',
 			remote: this.remote,
 			border: true,
 			margins: '0 0 -1 -1',
+			margins: '5',
 			paging: false,
 			storeOptions: {
 				autoLoad: true
@@ -22,16 +23,27 @@
 
 		var formFields = Ext.create(this.getNestedTypeName('.form.ConvertForm')).getItems({
 			remote: this.remote,
-			data: this.convertData
+			data: this.convertData,
+			apply: {
+				Amount: {
+					listeners: {
+						scope: this,
+						'specialkey': function (field, e) {
+							if (e.getKey() == e.ENTER)
+								this.recalculate();
+						}
+					}
+				}
+			}
 		});
 
 		formFields.push({
 			text: 'Recalculate',
 			xtype: 'button',
 			margin: '0 0 0 5',
-			height: 40,
+			height: 35,
 			scope: this,
-			handler: function () {
+			handler: this.recalculate = function () {
 				var form = this.down('form');
 				if (!form.getForm().isValid())
 					return;
@@ -69,16 +81,7 @@
 				border: false,
 				xtype: 'iframebox',
 				src: 'Content/Article/Currencies'
-				//bodyStyle: 'padding: 10px',
-//				html: ['<h2>Currency</h2>',
-//					'<b>Wikipedia</b>: In economics, currency refers to a generally accepted medium of exchange.',
-//					' These are usually the coins and banknotes of a particular government, ',
-//					'which comprise the physical aspects of a nation\'s money supply. ',
-//					'The other part of a nation\'s money supply consists of bank deposits ',
-//					'(sometimes called deposit money), ownership of which can be transferred',
-//					' by means of cheques, debit cards, or other forms of money transfer. ',
-//					'Deposit money and currency are money in the sense that both are acceptable as a means of payment.']
-				}]
+			}]
 		});
 
 		this.callParent(arguments);

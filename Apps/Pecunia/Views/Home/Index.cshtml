@@ -1,11 +1,13 @@
 ﻿@model Pecunia.Models.AppConfig
 @{
-    ViewBag.Title = "Dextop Sample Application";
+    ViewBag.Title = "Pecunia";
 }
 <!DOCTYPE html>
 <html>
 <head>  
-    <title>@ViewBag.Title</title>            
+    <title>@ViewBag.Title</title>      
+    <link href='http://fonts.googleapis.com/css?family=Sunshiney' rel='stylesheet' type='text/css' />
+    
     @foreach (var css in Model.CssFiles)
     { 
         <link href="@css" rel="stylesheet" type="text/css" /> 
@@ -23,6 +25,6 @@
             Dextop.Session.initialize(@Html.Raw(Model.SessionConfig));
         });
     </script>    
-    <div id="footer">Pecunia @(Pecunia.Services.AssemblyService.GetVersionNumber()) Copyright © Codaxy 2011</div>
+    <div id="footer">Pecunia v@(Pecunia.Services.AssemblyService.GetVersionNumber()) Copyright © Codaxy 2011</div>
 </body>
 </html>
