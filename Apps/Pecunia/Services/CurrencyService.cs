@@ -84,25 +84,29 @@ namespace Pecunia.Services
 											 Rate = XmlConvert.ToDecimal(d.Attribute("rate").Value)
 										 }).ToList()
 							}).Single();
-				list.Rates.Add(new CurrencyRate
+                
+                //fixed course
+                list.Rates.Add(new CurrencyRate { ISOCode = "BAM", Currency = GetCurrencyName("BAM"), Rate = 1.95583m });
+				
+                list.Rates.Add(new CurrencyRate
 				{
 					ISOCode = "EUR",
 					Currency = GetCurrencyName("EUR"),
 					Rate = 1
 				});
-				list.Rates = list.Rates.OrderBy(a => a.ISOCode).ToList();
+				list.Rates = list.Rates.OrderBy(a => a.Currency).ToList();
 				return list;
 			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine(ex);
-				return new CurrencyList
-				{
-					Date = DateTime.Today.AddDays(-1),
-					Rates = new List<CurrencyRate>() { 
-						new CurrencyRate { ISOCode = "EUR", Currency = "Euro", Rate = 1}
+                return new CurrencyList
+                {
+                    Date = DateTime.Today.AddDays(-1),
+                    Rates = new List<CurrencyRate>() { 
+						new CurrencyRate { ISOCode = "EUR", Currency = "Euro", Rate = 1 },                       
 					}
-				};
+                };
 			}
 		}
 	}
