@@ -21,9 +21,7 @@
             },
             listeners: {
                 itemclick: function (view, record) {
-                    historyStore.load({
-                        params: { ISOCode : record.get("ISOCode") }
-                    });
+                    alert('hallo');
                 }
             }
 

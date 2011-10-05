@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Panels\Courses\CoursesPanel.cs" />
+    <Compile Include="App\Panels\Stocks\StockPanel.cs" />
     <Compile Include="App\Session.cs" />
     <Compile Include="App\UsersPanel.cs" />
     <Compile Include="Application.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Services\AssemblyService.cs" />
     <Compile Include="Services\CurrencyHistoryService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
+    <Compile Include="Services\StockService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Navigation\icons\account.png" />
@@ -100,6 +102,7 @@
     <Content Include="App\Navigation\navigation.css" />
     <Content Include="App\Navigation\NavigationBar.js" />
     <Content Include="App\Panels\Courses\CoursesPanel.js" />
+    <Content Include="App\Panels\Stocks\StockPanel.js" />
     <Content Include="App\UsersPanel.js" />
     <Content Include="App\Session.js" />
     <Content Include="browse.htm" />
@@ -164,7 +167,6 @@
   <ItemGroup>
     <Folder Include="App\Panels\Contacts\" />
     <Folder Include="App\Panels\Reports\" />
-    <Folder Include="App\Panels\Stocks\" />
     <Folder Include="App\Panels\Transactions\" />
     <Folder Include="bin\" />
     <Folder Include="Cache\" />
