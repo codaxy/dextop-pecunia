@@ -55,9 +55,13 @@ namespace Pecunia.App
         CurrencyHistoryRate[] LoadHistory(DextopReadFilter filter) 
         {
             String iso;
-            var currency = filter.Params.TryGet<String>("ISOCode", out iso);
+            filter.Params.TryGet<String>("ISOCode", out iso);
+            var baseCurency = filter.Params.SafeGet<String>("BaseCurrencyISOCode", "EUR");
 
-            return CurrencyHistoryService.getHistoryRateOfCurrency(iso).ToArray();
+            if (baseCurency == "EUR")
+                return CurrencyHistoryService.GetCurrencyRateHistory(iso);
+            else
+                return CurrencyHistoryService.GetCurrencyRateComparisionHistory(iso, baseCurency);
         }
 
 		[DextopModel]

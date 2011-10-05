@@ -11,30 +11,36 @@ using Codaxy.Dextop.Data;
 namespace Pecunia.Services
 {
     public class CurrencyHistoryService
-    {
-        
+    {        
         static List<CurrencyList> historyList;
+        static DateTime cacheTime;
 
-        private static List<CurrencyList> PrepareData()
+        public static CurrencyHistoryRate[] GetCurrencyRateHistory(String ISOCode)
         {
-            //if (historyList != null && historyList.Date.Date == DateTime.Today)
-            if (historyList != null)
-                return historyList;
-            return historyList = FetchCurrencyList();
+            return GetCurrencyList().SelectMany(a => a.Rates.Where(b => b.ISOCode == ISOCode).Select(c => new CurrencyHistoryRate
+            {
+                Date = a.Date,
+                Rate = c.Rate,
+            })).ToArray();
         }
 
-        public static List<CurrencyHistoryRate> getHistoryRateOfCurrency(String ISOCode)
+        public static CurrencyHistoryRate[] GetCurrencyRateComparisionHistory(String ISOCode, String baseCurrencyISOCode)
         {
-            PrepareData();
-            List<CurrencyHistoryRate> list = new List<CurrencyHistoryRate>();
-            foreach (var value in historyList) {
-                CurrencyRate rate = value.Rates.Where(a => a.ISOCode.Equals(ISOCode)).Single();
-                list.Add(new CurrencyHistoryRate() { 
-                    Date = value.Date,
-                    Rate = rate.Rate
-                });
-            }
-            return list;
+            var list1 = GetCurrencyRateHistory(ISOCode);
+            var list2 = GetCurrencyRateHistory(baseCurrencyISOCode);
+            if (list1.Length == list2.Length)
+                for (var i = 0; i < list1.Length; i++)
+                    list1[i].Rate /= list2[i].Rate;
+            return list1;
+        }
+
+        public static List<CurrencyList> GetCurrencyList()
+        {
+            if (historyList != null && cacheTime.AddHours(1) > DateTime.Now)
+                return historyList;
+            historyList = FetchCurrencyList();
+            cacheTime = DateTime.Now;
+            return historyList;
         }
 
         public static List<CurrencyList> FetchCurrencyList()
@@ -51,7 +57,6 @@ namespace Pecunia.Services
                                 Rates = (from d in el.Descendants()
                                          select new CurrencyRate
                                          {
-                                             Currency = GetCurrencyName(d.Attribute("currency").Value),
                                              ISOCode = d.Attribute("currency").Value,
                                              Rate = XmlConvert.ToDecimal(d.Attribute("rate").Value)
                                          }).ToList()
@@ -61,10 +66,14 @@ namespace Pecunia.Services
                     clist.Rates.Add(new CurrencyRate
                     {
                         ISOCode = "EUR",
-                        Currency = GetCurrencyName("EUR"),
                         Rate = 1
                     });
-                    clist.Rates.OrderBy(a => a.ISOCode).ToList();
+
+                    clist.Rates.Add(new CurrencyRate
+                    {
+                        ISOCode = "BAM",
+                        Rate = 1.95583m
+                    });
                 }
                 return list;
             }
@@ -74,35 +83,6 @@ namespace Pecunia.Services
                 return new List<CurrencyList>();
             }
         }
-
-       static SortedDictionary<String, String> currencyName;
-
-        static void LoadCurrencyNames()
-		{
-			if (currencyName != null)
-				return;
-
-			currencyName = new SortedDictionary<string, string>();
-			foreach (var ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
-			{
-				var regionInfo = new RegionInfo(ci.LCID);
-				currencyName[regionInfo.ISOCurrencySymbol] = regionInfo.CurrencyEnglishName;
-			}
-		}
-
-		public static String GetCurrencyName(String code)
-		{
-			if (currencyName == null)
-				LoadCurrencyNames();
-			String value;
-			if (currencyName.TryGetValue(code, out value))
-				return value;
-			return code;
-		}
-
-     
-
-
     }
 
     [DextopModel]
