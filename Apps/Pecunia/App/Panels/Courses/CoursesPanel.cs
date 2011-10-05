@@ -26,6 +26,7 @@ namespace Pecunia.App
         {
             base.InitRemotable(remote, config);			
             Remote.AddStore("model", Load);
+            Remote.AddStore("history", LoadHistory);
 			Remote.AddLookupData("Currency", CurrencyService.GetCurrencyList().Rates.Select(a => new Object[] { 
 				a.ISOCode, String.Format("{0} ({1})", a.Currency, a.ISOCode) }).ToArray());
 			
@@ -51,6 +52,14 @@ namespace Pecunia.App
 			}).ToArray();
 		}
 
+        CurrencyHistoryRate[] LoadHistory(DextopReadFilter filter) 
+        {
+            String iso;
+            var currency = filter.Params.TryGet<String>("ISOCode", out iso);
+
+            return CurrencyHistoryService.getHistoryRateOfCurrency(iso).ToArray();
+        }
+
 		[DextopModel]
 		[DextopGrid]
 		class RateModel
@@ -70,6 +79,7 @@ namespace Pecunia.App
 			public String ISOCode { get; set; }
 		}
 
+
 		[DextopForm]
 		public class ConvertForm
 		{
@@ -79,8 +89,9 @@ namespace Pecunia.App
 			[DextopFormLookupCombo(labelAlign="top", width=200)]
 			public string Currency { get; set; }
 		}
-    }
-    
 
-    
+     
+      
+    }
+        
 }

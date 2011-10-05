@@ -85,6 +85,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AssemblyService.cs" />
+    <Compile Include="Services\CurrencyHistoryService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,7 @@
     <Folder Include="App\Panels\Stocks\" />
     <Folder Include="App\Panels\Transactions\" />
     <Folder Include="bin\" />
+    <Folder Include="Cache\" />
     <Folder Include="client\js\cache\" />
     <Folder Include="client\js\generated\" />
   </ItemGroup>

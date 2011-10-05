@@ -46,3 +46,17 @@ Ext.define('Pecunia.UsersPanel.model.User',
 	}],
 	idProperty: 'Id'
 });
+Ext.define('Pecunia.model.CurrencyHistoryRate',
+{
+	extend: 'Ext.data.Model',
+	fields: [{
+		name: 'Date',
+		type: 'date',
+		useNull: true
+	}, {
+		name: 'Rate',
+		type: 'float',
+		useNull: true
+	}],
+	idProperty: 'Date'
+});
