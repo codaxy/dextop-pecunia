@@ -5,58 +5,59 @@ using System.Web;
 using System.Net;
 using System.IO;
 using Pecunia.App;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace Pecunia.Services
 {
     public class StockService
     {
 
-        private static List<String> StockNames = new List<String>() {
-            "AAPL", "AMZN", "YHOO", "CNET", "ORCL", "NOVL", "MSFT", "INTC", "EBAY", "DELL", "GOOG" 
+        private static SortedDictionary<String, String> stockSet = new SortedDictionary<string, string>(){
+            {"AAPL","Apple Inc."},
+            {"AMZN","Amazon, Inc."}, 
+            {"YHOO","Yahoo! Inc."}, 
+            {"ORCL","Oracle "}, 
+            {"MSFT","Microsoft"}, 
+            {"INTC","Intel"}, 
+            {"EBAY","eBay Inc."}, 
+            {"DELL","Dell"}, 
+            {"GOOG","Google"} 
         };
 
         public static List<Stock> getStockDataSet() { 
             List<Stock> stocks = new List<Stock>();
 
+            foreach (var code in stockSet.Keys)
+                stocks.Add(loadStockData(code));    
+
             return stocks;
         }
 
-        private string loadJSONStockData(String stockCode)
+        private static Stock loadStockData(String stockCode)
         {
             String googleFinanceApiUrl = "http://www.google.com/finance/info?client=ig&q=" + stockCode;
 
-            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(googleFinanceApiUrl);
-
-            HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-            StreamReader responseStream = new StreamReader(response.GetResponseStream());
-            string result = responseStream.ReadToEnd();
-            
-            response.Close();
-            responseStream.Close();
-
-            return result;
-        }
-
-        private Stock parseJSONStockData(String stockData) {
-
-            Stock stock = new Stock();
-            
-            // i think this way is better :) 
-            /*
             WebClient client = new WebClient();
-            Stream stream = client.OpenRead("http://api.kazaa.com/api/v1/search.json?q=muse&type=Album");
+            Stream stream = client.OpenRead(googleFinanceApiUrl);
             StreamReader reader = new StreamReader(stream);
 
-            Newtonsoft.Json.Linq.JObject jObject = Newtonsoft.Json.Linq.JObject.Parse(reader.ReadLine());
+            String json = reader.ReadToEnd();
+            json = json.TrimStart(new char[] { '\n', '/', '/' });
 
-            // instead of WriteLine, 2 or 3 lines of code here using WebClient to download the file
-            Console.WriteLine((string)jObject["albums"][0]["cover_image_url"]);
+            JToken stockData = JArray.Parse(json).First;
+            
             stream.Close();
-            */
-            
-            
 
-            return null;
+            Stock stock = new Stock()
+            {
+                Name = stockSet[stockCode],
+                Code = stockCode,
+                Change = Decimal.Parse(stockData["c"].ToString(), CultureInfo.InvariantCulture.NumberFormat),
+                Price = Decimal.Parse(stockData["l_cur"].ToString(), CultureInfo.InvariantCulture.NumberFormat)
+            };
+
+            return stock;
         }
 
     }

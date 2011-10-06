@@ -20,6 +20,28 @@ Ext.define('Pecunia.CoursesPanel.model.RateModel',
 	}],
 	idProperty: 'ISOCode'
 });
+Ext.define('Pecunia.model.Stock',
+{
+	extend: 'Ext.data.Model',
+	fields: [{
+		name: 'Name',
+		type: 'string',
+		useNull: true
+	}, {
+		name: 'Code',
+		type: 'string',
+		useNull: true
+	}, {
+		name: 'Change',
+		type: 'float',
+		useNull: true
+	}, {
+		name: 'Price',
+		type: 'float',
+		useNull: true
+	}],
+	idProperty: 'Name'
+});
 Ext.define('Pecunia.model.CurrencyHistoryRate',
 {
 	extend: 'Ext.data.Model',

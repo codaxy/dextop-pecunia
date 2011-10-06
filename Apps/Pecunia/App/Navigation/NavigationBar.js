@@ -14,7 +14,11 @@
 					title: 'Currencies',
 					type: 'courses',
 					iconCls: 'accounting'
-				}]
+	            }, {
+                    title: 'Stocks',
+                    type: 'stocks',
+                    iconCls: 'shares'
+                }]
 			}, {
 				title: 'Cool Topic 1',
 				xtype: 'navigationpanel',

@@ -1,13 +1,13 @@
 ﻿Ext.define('Pecunia.StockPanel', {
     extend: 'Dextop.Panel',
 
-    title: 'Courses',
+    title: 'Stocks',
     border: true,
     closable: true,
+    barChart: false,
 
     initComponent: function () {
-
-        var historyStore = this.remote.createStore("history");
+        var _self = this;
 
         var grid = Ext.create('Dextop.ux.SwissArmyGrid', {
             region: 'center',
@@ -21,116 +21,71 @@
             },
             listeners: {
                 itemclick: function (view, record) {
-                    alert('hallo');
-                }
-            }
-
-        });
-
-        // ---
-
-        var formFields = Ext.create(this.getNestedTypeName('.form.ConvertForm')).getItems({
-            remote: this.remote,
-            data: this.convertData,
-            apply: {
-                Amount: {
-                    listeners: {
-                        scope: this,
-                        'specialkey': function (field, e) {
-                            if (e.getKey() == e.ENTER)
-                                this.recalculate();
-                        }
-                    }
-                }
+                   _self.selection(record);
+                }   
             }
         });
 
-        formFields.push({
-            text: 'Recalculate',
-            xtype: 'button',
-            margin: '0 0 0 5',
-            height: 35,
-            scope: this,
-            handler: this.recalculate = function () {
-                var form = this.down('form');
-                if (!form.getForm().isValid())
-                    return;
-                grid.store.load({
-                    params: form.getForm().getFieldValues()
-                });
-            }
-        });
-
-        var calcForm = Ext.create('Ext.form.Panel', {
-            height: 60,
-            region: 'north',
-            border: false,
-            layout: {
-                type: 'hbox',
-                align: 'middle'
-            },
-            fieldDefaults: {
-                margin: '0 0 0 5'
-            },
-            bodyStyle: 'padding: 5px',
-            items: formFields
-        });
-
-
-        var chart = Ext.create('Ext.chart.Chart', {
+        this.barChart = Ext.create('Ext.chart.Chart', {
             region: 'center',
-            width: 400,
-            height: 300,
-            store: historyStore,
-            axes: [
-            {
-                title: 'Value',
+            store: grid.store,
+            axes: [{
                 type: 'Numeric',
                 position: 'left',
-                fields: ['Rate']
-            },
-            {
-                title: 'Date',
-                type: 'Time',
-                dateFormat: 'd M Y',
+                fields: ['Price'],
+                title: 'Current Price'
+            }, {
+                type: 'Category',
                 position: 'bottom',
-                fields: ['Date']
-            }
-            ],
-            series: [
-            {
-                type: 'line',
-                xField: 'Date',
-                yField: 'Rate'
-            }
-            ]
+                fields: ['Name'],
+                title: 'Name'
+            }],
+            series: [{
+                type: 'column',
+                xField: 'Name',
+                yField: 'Price'
+            }]
         });
-
-
-        var _self = this;
+       
         Ext.apply(this, {
             layout: 'border',
-            items: [{
+            items: [
+            {
                 border: false,
-                region: 'west',
-                width: 600,
+                region: 'east',
+                width: 800,
                 layout: 'border',
-                items: [grid, calcForm]
-            }, chart],
-            buttons: [{
-                text: 'Callback Function',
-                handler: function () {
-                    _self.remote.getCurrencyHistoryRate("AUD", function (r) {
-                        if (r && r.success)
-                            store.loadData(r.result);
-                        else
-                            alert('failed');
-                    }, _self);
-                }
-            }]
+                items: [_self.barChart, {
+                    region: 'north',
+                    height: 220,
+                    border: false,
+                    xtype: 'iframebox',
+                    src: 'Content/Article/Shares'
+                }]
+            },
+            grid]
         });
 
         this.callParent(arguments);
+    },
 
-    }
+    selection: function (storeItem) {
+        var name = storeItem.get('Name');
+        var series = this.barChart.series.get(0);
+        var i, l, items;
+
+        series.highlight = true;
+        series.unHighlightItem();
+        series.cleanHighlights();
+
+        for (i = 0, items = series.items, l = items.length; i < l; i++) {
+            if (name == items[i].storeItem.get('Name')) {
+                selectedStoreItem = items[i].storeItem;
+                series.highlightItem(items[i]);
+                break;
+            }
+        }
+        series.highlight = false;
+    },
+
 });

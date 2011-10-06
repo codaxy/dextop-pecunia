@@ -15,13 +15,6 @@ namespace Pecunia.App
         DextopConfig CreatePanel(String panelName)
         {
 
-            /*
-            switch (panelName)
-            {
-                case "invoice-list": return Remote.Register(new InvoiceList());
-            }
-            */
-
             throw new Exception("Requested View not does not exist!");
         }
 

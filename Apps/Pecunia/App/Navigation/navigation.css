@@ -34,3 +34,10 @@
     background-image: url('icons/accounting.png');
     background-repeat: no-repeat;
 }
+
+.shares
+{
+    background-position: center center;
+    background-image: url('icons/shares.png');
+    background-repeat: no-repeat;
+}

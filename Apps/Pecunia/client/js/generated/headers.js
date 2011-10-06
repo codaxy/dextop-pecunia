@@ -37,6 +37,46 @@ Ext.define('Pecunia.CoursesPanel.columns.RateModel', {
 	AmountText: 'Amount',
 	ISOCodeText: 'ISO'
 });
+Ext.define('Pecunia.columns.Stock', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Name"] = {
+			text: this.NameText,
+			flex: 1,
+			width: 200,
+			dataIndex: 'Name',
+			type: 'string'
+		};
+		dict["Code"] = {
+			text: this.CodeText,
+			width: 100,
+			dataIndex: 'Code',
+			type: 'string'
+		};
+		dict["Change"] = {
+			text: this.ChangeText,
+			width: 100,
+			dataIndex: 'Change',
+			type: 'float'
+		};
+		dict["Price"] = {
+			text: this.PriceText,
+			width: 100,
+			dataIndex: 'Price',
+			type: 'float'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Name'], dict['Code'], dict['Change'], dict['Price']];
+	},
+	NameText: 'Name',
+	CodeText: 'Code',
+	ChangeText: 'Code',
+	PriceText: 'Price'
+});
 Ext.define('Pecunia.UsersPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){

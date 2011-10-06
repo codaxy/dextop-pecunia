@@ -2,6 +2,10 @@ Ext.define('Pecunia.CoursesPanel.remoting.Proxy', {
 	extend: 'Dextop.Window.remoting.Proxy'
 });
 
+Ext.define('Pecunia.StockPanel.remoting.Proxy', {
+	extend: 'Dextop.Window.remoting.Proxy'
+});
+
 Ext.define('Pecunia.UsersPanel.remoting.Proxy', {
 	extend: 'Dextop.Window.remoting.Proxy'
 });
