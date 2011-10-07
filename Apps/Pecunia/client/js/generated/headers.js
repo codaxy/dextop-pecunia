@@ -54,6 +54,12 @@ Ext.define('Pecunia.columns.Stock', {
 			dataIndex: 'Code',
 			type: 'string'
 		};
+		dict["Capital"] = {
+			text: this.CapitalText,
+			width: 100,
+			dataIndex: 'Capital',
+			type: 'float'
+		};
 		dict["Change"] = {
 			text: this.ChangeText,
 			width: 100,
@@ -70,11 +76,12 @@ Ext.define('Pecunia.columns.Stock', {
 
 	},
 	buildItems: function(dict){
-		return [dict['Name'], dict['Code'], dict['Change'], dict['Price']];
+		return [dict['Name'], dict['Code'], dict['Capital'], dict['Change'], dict['Price']];
 	},
 	NameText: 'Name',
 	CodeText: 'Code',
-	ChangeText: 'Code',
+	CapitalText: 'Capital',
+	ChangeText: 'Change',
 	PriceText: 'Price'
 });
 Ext.define('Pecunia.UsersPanel.columns.User', {
@@ -115,4 +122,50 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	UsernameText: 'Username',
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
+});
+Ext.define('Pecunia.columns.Contact', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Firstname"] = {
+			text: this.FirstnameText,
+			width: 200,
+			dataIndex: 'Firstname',
+			type: 'string'
+		};
+		dict["Lastname"] = {
+			text: this.LastnameText,
+			width: 200,
+			dataIndex: 'Lastname',
+			type: 'string'
+		};
+		dict["From"] = {
+			text: this.FromText,
+			width: 200,
+			dataIndex: 'From',
+			type: 'date'
+		};
+		dict["To"] = {
+			text: this.ToText,
+			width: 200,
+			dataIndex: 'To',
+			type: 'date'
+		};
+		dict["Science"] = {
+			text: this.ScienceText,
+			width: 200,
+			dataIndex: 'Science',
+			type: 'string'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Firstname'], dict['Lastname'], dict['From'], dict['To'], dict['Science']];
+	},
+	FirstnameText: 'Firstname',
+	LastnameText: 'Lastname',
+	FromText: 'From',
+	ToText: 'To',
+	ScienceText: 'Science'
 });

@@ -41,3 +41,10 @@
     background-image: url('icons/shares.png');
     background-repeat: no-repeat;
 }
+
+.contacts
+{
+    background-position: center center;
+    background-image: url('icons/categories.png');
+    background-repeat: no-repeat;
+}

@@ -26,12 +26,11 @@ namespace Pecunia.App
         {
             base.InitRemotable(remote, config);
             Remote.AddStore("model", Load);
-
         }
 
         Stock[] Load(DextopReadFilter filter)
         {
-            var data = StockService.getStockDataSet();
+            var data = StockService.getStockData();
             return data.ToArray();
         }
 
@@ -48,7 +47,10 @@ namespace Pecunia.App
         [DextopGridColumn(width = 100, text = "Code")]
         public String Code { get; set; }
 
-        [DextopGridColumn(width = 100, text = "Code")]
+        [DextopGridColumn(width = 100, text = "Capital")]
+        public decimal? Capital { get; set; }
+
+        [DextopGridColumn(width = 100, text = "Change")]
         public decimal? Change { get; set; }
 
         [DextopGridColumn(width = 100, text = "Price")]

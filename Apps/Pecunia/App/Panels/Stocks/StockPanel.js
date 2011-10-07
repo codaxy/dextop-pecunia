@@ -32,18 +32,18 @@
             axes: [{
                 type: 'Numeric',
                 position: 'left',
-                fields: ['Price'],
-                title: 'Current Price'
+                fields: ['Capital'],
+                title: 'Market Capital'
             }, {
                 type: 'Category',
                 position: 'bottom',
-                fields: ['Name'],
-                title: 'Name'
+                fields: ['Code'],
+                title: 'Code'
             }],
             series: [{
                 type: 'column',
-                xField: 'Name',
-                yField: 'Price'
+                xField: 'Code',
+                yField: 'Capital'
             }]
         });
        

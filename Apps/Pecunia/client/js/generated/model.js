@@ -32,6 +32,10 @@ Ext.define('Pecunia.model.Stock',
 		type: 'string',
 		useNull: true
 	}, {
+		name: 'Capital',
+		type: 'float',
+		useNull: true
+	}, {
 		name: 'Change',
 		type: 'float',
 		useNull: true
@@ -81,4 +85,34 @@ Ext.define('Pecunia.UsersPanel.model.User',
 		useNull: true
 	}],
 	idProperty: 'Id'
+});
+Ext.define('Pecunia.model.Contact',
+{
+	extend: 'Ext.data.Model',
+	fields: [{
+		name: 'id',
+		type: 'int',
+		useNull: true
+	}, {
+		name: 'Firstname',
+		type: 'string',
+		useNull: true
+	}, {
+		name: 'Lastname',
+		type: 'string',
+		useNull: true
+	}, {
+		name: 'From',
+		type: 'date',
+		useNull: true
+	}, {
+		name: 'To',
+		type: 'date',
+		useNull: true
+	}, {
+		name: 'Science',
+		type: 'string',
+		useNull: true
+	}],
+	idProperty: 'id'
 });
