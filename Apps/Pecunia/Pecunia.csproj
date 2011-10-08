@@ -34,14 +34,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Codaxy.Common">
-      <HintPath>..\..\packages\Codaxy.Common.0.5.8\lib\Codaxy.Common.dll</HintPath>
+    <Reference Include="Codaxy.CodeReports">
+      <HintPath>..\..\packages\Codaxy.CodeReports.0.1.1\lib\Codaxy.CodeReports.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.CodeReports.Exporters.Html">
+      <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Html.0.1.1\lib\Codaxy.CodeReports.Exporters.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.CodeReports.Exporters.Text">
+      <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Text.0.1.0\lib\Codaxy.CodeReports.Exporters.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.CodeReports.Exporters.Xlio">
+      <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Xlio.0.1.0\lib\Codaxy.CodeReports.Exporters.Xlio.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Codaxy.Common.0.5.9\lib\Codaxy.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.Common.Localization">
+      <HintPath>..\..\packages\Codaxy.Common.Localization.0.5.5\lib\Codaxy.Common.Localization.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Dextop">
       <HintPath>..\..\packages\Codaxy.Dextop.Core.0.7.11\lib\Codaxy.Dextop.dll</HintPath>
     </Reference>
+    <Reference Include="Codaxy.Xlio">
+      <HintPath>..\..\packages\Codaxy.Xlio.0.8.4\lib\Codaxy.Xlio.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.Xlio.XmlSerializers">
+      <HintPath>..\..\packages\Codaxy.Xlio.0.8.4\lib\Codaxy.Xlio.XmlSerializers.dll</HintPath>
+    </Reference>
     <Reference Include="EcmaScript.NET.modified">
       <HintPath>..\..\packages\YUICompressor.NET.1.6.0.2\lib\net35\EcmaScript.NET.modified.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -73,24 +97,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Panels\Contacts\ContactsPanel.cs" />
     <Compile Include="App\Panels\Courses\CoursesPanel.cs" />
     <Compile Include="App\Panels\Stocks\StockPanel.cs" />
     <Compile Include="App\Session.cs" />
     <Compile Include="App\UsersPanel.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Application.Module.cs" />
+    <Compile Include="App\Worldbank\GdpPanel.cs" />
+    <Compile Include="App\Worldbank\Reports\GdpYearColumns.cs" />
+    <Compile Include="App\Worldbank\Reports\GdpByCountry.cs" />
+    <Compile Include="App\Worldbank\Reports\GdpByYear.cs" />
+    <Content Include="client\css\report-preview.css" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PdfConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AssemblyService.cs" />
-    <Compile Include="Services\ContactService.cs" />
     <Compile Include="Services\CurrencyHistoryService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\StockService.cs" />
+    <Compile Include="Services\Worldbank\GDPService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Navigation\icons\account.png" />
@@ -103,14 +132,15 @@
     <Content Include="App\Navigation\icons\shares.png" />
     <Content Include="App\Navigation\navigation.css" />
     <Content Include="App\Navigation\NavigationBar.js" />
-    <Content Include="App\Panels\Contacts\ContactsPanel.js" />
     <Content Include="App\Panels\Courses\CoursesPanel.js" />
     <Content Include="App\Panels\Stocks\StockPanel.js" />
     <Content Include="App\UsersPanel.js" />
     <Content Include="App\Session.js" />
+    <Content Include="App\Worldbank\GdpPanel.js" />
     <Content Include="browse.htm" />
     <Content Include="client\css\Content.css" />
     <Content Include="client\css\images\glossymetal.jpg" />
+    <Content Include="client\css\report.css" />
     <Content Include="client\js\controls\iframe.js" />
     <Content Include="client\js\controls\Item.js" />
     <Content Include="client\js\controls\NavigationPanel.js" />
@@ -168,6 +198,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\Panels\Contacts\" />
     <Folder Include="App\Panels\Reports\" />
     <Folder Include="App\Panels\Transactions\" />
     <Folder Include="bin\" />
@@ -189,6 +220,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Content\Shares.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\GDP.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

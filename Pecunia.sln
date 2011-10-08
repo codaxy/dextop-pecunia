@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pecunia", "Apps\Pecunia\Pecunia.csproj", "{B44A70C4-E33D-47B9-97E7-1E3E9ACC7D80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pecunia.Tests", "Tests\Pecunia.Tests\Pecunia.Tests.csproj", "{B0331B37-4CA3-4283-BC2D-4B108226ACBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{B44A70C4-E33D-47B9-97E7-1E3E9ACC7D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B44A70C4-E33D-47B9-97E7-1E3E9ACC7D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B44A70C4-E33D-47B9-97E7-1E3E9ACC7D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0331B37-4CA3-4283-BC2D-4B108226ACBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0331B37-4CA3-4283-BC2D-4B108226ACBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0331B37-4CA3-4283-BC2D-4B108226ACBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0331B37-4CA3-4283-BC2D-4B108226ACBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
