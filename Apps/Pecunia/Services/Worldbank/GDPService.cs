@@ -18,6 +18,7 @@ namespace Pecunia.Services.Worldbank
 		{
 			public const string GdpGrowthRate = "NY.GDP.MKTP.KD.ZG";
 			public const string Gdp = "NY.GDP.MKTP.CD";
+			public const string GniPerCapita = "NY.GNP.PCAP.CD";
 		}
 		
 		const string indicatorServiceUrl = "http://api.worldbank.org/countries/indicators/{0}?per_page=2000&date={1}:{2}&format=json";
@@ -80,10 +81,12 @@ namespace Pecunia.Services.Worldbank
 						var firstYear = lastYear - 4;
 						string gdpServiceUrl = String.Format(indicatorServiceUrl, Indicators.Gdp, firstYear, lastYear);
 						string gdpGrowthServiceUrl = String.Format(indicatorServiceUrl, Indicators.GdpGrowthRate, firstYear, lastYear);
+						string gniPerCapitaServiceUrl = String.Format(indicatorServiceUrl, Indicators.GniPerCapita, firstYear, lastYear);
 
 						Parallel.Invoke(new Action[] {
 						() => {	FetchIndicator(gdpServiceUrl, (c, v) => { c.GDP = v; });}, 
-						() => { FetchIndicator(gdpGrowthServiceUrl, (c, v) => { c.GDPGrowth = v; });}
+						() => { FetchIndicator(gdpGrowthServiceUrl, (c, v) => { c.GDPGrowth = v; });},
+						() => { FetchIndicator(gniPerCapitaServiceUrl, (c, v) => { c.GniPerCapita = v; });}
 					});
 
 						if (CacheFilePath != null)
@@ -117,5 +120,6 @@ namespace Pecunia.Services.Worldbank
 		public int Year { get; set; }
 		public decimal? GDP { get; set; }
 		public decimal? GDPGrowth { get; set; }
+		public decimal? GniPerCapita { get; set; }
 	}
 }

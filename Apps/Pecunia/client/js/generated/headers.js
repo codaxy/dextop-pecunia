@@ -84,6 +84,24 @@ Ext.define('Pecunia.columns.Stock', {
 	ChangeText: 'Change',
 	PriceText: 'Price'
 });
+Ext.define('Pecunia.GdpPanel.columns.ReportType', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Title"] = {
+			text: this.TitleText,
+			flex: 1,
+			dataIndex: 'Title',
+			type: 'string'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Title']];
+	},
+	TitleText: 'Title'
+});
 Ext.define('Pecunia.UsersPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
@@ -122,22 +140,4 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	UsernameText: 'Username',
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
-});
-Ext.define('Pecunia.GdpPanel.columns.ReportType', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Title"] = {
-			text: this.TitleText,
-			flex: 1,
-			dataIndex: 'Title',
-			type: 'string'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Title']];
-	},
-	TitleText: 'Title'
 });

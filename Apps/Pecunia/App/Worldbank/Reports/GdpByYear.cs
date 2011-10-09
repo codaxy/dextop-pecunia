@@ -23,6 +23,9 @@ namespace Pecunia.App.Worldbank.Reports
 			[TableColumn(Format = "{0:0,0}")]
 			public decimal? GDP { get; set; }
 
+			[TableColumn(Format = "{0:n}", HeaderText="GNI Per Capita")]
+			public decimal? GniPerCapita { get; set; }
+
 			[TableColumn(HeaderText="Growth", Format="{0:n}%", SortIndex=0, SortDirection=SortDirection.Descending)]
 			public decimal? GdpGrowth { get; set; }
 		}
@@ -36,7 +39,8 @@ namespace Pecunia.App.Worldbank.Reports
 						   Country = item.Country,
 						   GDP = item.GDP,
 						   GdpGrowth = item.GDPGrowth,
-						   Year = item.Year
+						   Year = item.Year,
+						   GniPerCapita = item.GniPerCapita
 					   };
 			dc.AddTable("data", data.ToArray());
 			

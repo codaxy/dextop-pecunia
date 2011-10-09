@@ -16,6 +16,7 @@ namespace Pecunia.App.Worldbank.Reports
 		{
 			protected decimal?[] GDP = new decimal?[5];
 			protected decimal?[] GDPGrowth = new decimal?[5];
+			protected decimal?[] GNIPC = new decimal?[5];
 
 			public void Process(int lastYear, CountryData rec)
 			{
@@ -25,6 +26,7 @@ namespace Pecunia.App.Worldbank.Reports
 
 				GDP[index] = rec.GDP;
 				GDPGrowth[index] = rec.GDPGrowth;
+				GNIPC[index] = rec.GniPerCapita;
 			}
 		}
 
@@ -49,7 +51,7 @@ namespace Pecunia.App.Worldbank.Reports
 			public decimal? Y4 { get { return GDP[1]; } }
 
 			[TableColumn(Format = "{0:0,0}")]
-			public decimal? Y5 { get { return GDP[0]; } }			
+			public decimal? Y5 { get { return GDP[0] ?? Y4; } }			
 		}
 
 		[GroupingLevel(0, ShowHeader = true)]
@@ -71,7 +73,29 @@ namespace Pecunia.App.Worldbank.Reports
 			public decimal? Y4 { get { return GDPGrowth[1]; } }
 
 			[TableColumn(Format = "{0:n}%")]
-			public decimal? Y5 { get { return GDPGrowth[0]; } }
+			public decimal? Y5 { get { return GDPGrowth[0] ?? Y4; } }
+		}
+
+		[GroupingLevel(0, ShowHeader = true)]
+		class GniPCItem : Base
+		{
+			[TableColumn()]
+			public String Country { get; set; }
+
+			[TableColumn(Format = "{0:0,0}")]
+			public decimal? Y1 { get { return GNIPC[4]; } }
+
+			[TableColumn(Format = "{0:0,0}")]
+			public decimal? Y2 { get { return GNIPC[3]; } }
+
+			[TableColumn(Format = "{0:0,0}")]
+			public decimal? Y3 { get { return GNIPC[2]; } }
+
+			[TableColumn(Format = "{0:0,0}")]
+			public decimal? Y4 { get { return GNIPC[1]; } }
+
+			[TableColumn(Format = "{0:0,0}")]
+			public decimal? Y5 { get { return GNIPC[0] ?? Y4; } }
 		}
 
 		public static Report BiggestCountries()
@@ -86,9 +110,10 @@ namespace Pecunia.App.Worldbank.Reports
 				if (!data.TryGetValue(item.Country, out i))
 					data.Add(item.Country, i = new GdpItem { Country = item.Country });
 				i.Process(lastYear, item);
-			}			
-		 	
-			dc.AddTable("data", data.Values.ToArray());
+			}
+
+			var res = data.Values.ToArray();
+			dc.AddTable("data", res);
 
 			var table = TableGenerator.GetTable(typeof(GdpItem), "data");
 			table.Columns.Last().SortIndex = 0;
@@ -116,9 +141,39 @@ namespace Pecunia.App.Worldbank.Reports
 				i.Process(lastYear, item);
 			}
 
-			dc.AddTable("data", data.Values.ToArray());
+			var res = data.Values.ToArray();
+			dc.AddTable("data", res);
 
 			var table = TableGenerator.GetTable(typeof(GrowthItem), "data");
+			table.Columns.Last().SortIndex = 0;
+			table.Columns.Last().SortDirection = SortDirection.Descending;
+			for (var i = 1; i < 6; i++)
+				table.Columns[i].HeaderText = (lastYear - 5 + i).ToString();
+
+			var flow = new Flow { Orientation = FlowOrientation.Vertical };
+			flow.Add(table);
+
+			return Report.CreateReport(flow, dc);
+		}
+
+		public static Report BestCountries()
+		{
+			var dc = new DataContext();
+			var data = new Dictionary<string, GniPCItem>();
+			var src = Pecunia.Services.Worldbank.GDPService.LoadData();
+			var lastYear = src.Max(a => a.Year);
+			foreach (var item in src)
+			{
+				GniPCItem i;
+				if (!data.TryGetValue(item.Country, out i))
+					data.Add(item.Country, i = new GniPCItem { Country = item.Country });
+				i.Process(lastYear, item);
+			}
+
+			var res = data.Values.ToArray();
+			dc.AddTable("data", res);
+
+			var table = TableGenerator.GetTable(typeof(GniPCItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
 			for (var i = 1; i < 6; i++)

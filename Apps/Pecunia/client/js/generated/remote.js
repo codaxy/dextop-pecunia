@@ -11,11 +11,11 @@ Ext.define('Pecunia.StockPanel.remoting.Proxy', {
 	extend: 'Dextop.Window.remoting.Proxy'
 });
 
-Ext.define('Pecunia.UsersPanel.remoting.Proxy', {
+Ext.define('Pecunia.GdpPanel.remoting.Proxy', {
 	extend: 'Dextop.Window.remoting.Proxy'
 });
 
-Ext.define('Pecunia.GdpPanel.remoting.Proxy', {
+Ext.define('Pecunia.UsersPanel.remoting.Proxy', {
 	extend: 'Dextop.Window.remoting.Proxy'
 });
 
