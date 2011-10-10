@@ -141,3 +141,56 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
 });
+Ext.define('Pecunia.columns.Contact', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Firstname"] = {
+			text: this.FirstnameText,
+			width: 200,
+			dataIndex: 'Firstname',
+			type: 'string'
+		};
+		dict["Lastname"] = {
+			text: this.LastnameText,
+			width: 200,
+			dataIndex: 'Lastname',
+			type: 'string'
+		};
+		dict["From"] = {
+			text: this.FromText,
+			width: 200,
+			dataIndex: 'From',
+			type: 'date'
+		};
+		dict["To"] = {
+			text: this.ToText,
+			width: 200,
+			dataIndex: 'To',
+			type: 'date'
+		};
+		dict["Business"] = {
+			text: this.BusinessText,
+			width: 200,
+			dataIndex: 'Business',
+			type: 'string'
+		};
+		dict["Capital"] = {
+			text: this.CapitalText,
+			width: 200,
+			dataIndex: 'Capital',
+			type: 'int'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Firstname'], dict['Lastname'], dict['From'], dict['To'], dict['Business'], dict['Capital']];
+	},
+	FirstnameText: 'Firstname',
+	LastnameText: 'Lastname',
+	FromText: 'From',
+	ToText: 'To',
+	BusinessText: 'Science',
+	CapitalText: 'Science'
+});

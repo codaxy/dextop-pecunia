@@ -25,7 +25,7 @@
 				}, {
 					title: 'GDP',
 					type: 'gdp',
-					iconCls: 'shares'
+					iconCls: 'worldbank'
 				}]
 			}, {
 				title: 'Cool Topic 1',

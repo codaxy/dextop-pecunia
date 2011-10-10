@@ -34,3 +34,61 @@ Ext.define('Pecunia.CoursesPanel.form.ConvertForm', {
 	}
 });
 
+Ext.define('Pecunia.form.Contact', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(options){
+		options = options || {};
+		options.data = options.data || {};
+		var dict = {};
+		dict["Firstname"] = {
+			name: 'Firstname',
+			xtype: 'textfield',
+			value: options.data['Firstname'],
+			fieldLabel: 'Firstname'
+		};
+		dict["Lastname"] = {
+			name: 'Lastname',
+			xtype: 'textfield',
+			value: options.data['Lastname'],
+			fieldLabel: 'Lastname'
+		};
+		dict["From"] = {
+			name: 'From',
+			xtype: 'datefield',
+			value: options.data['From'],
+			fieldLabel: 'From'
+		};
+		dict["To"] = {
+			name: 'To',
+			xtype: 'datefield',
+			value: options.data['To'],
+			fieldLabel: 'To'
+		};
+		dict["Business"] = {
+			name: 'Business',
+			xtype: 'textfield',
+			value: options.data['Business'],
+			fieldLabel: 'Business'
+		};
+		dict["Capital"] = {
+			name: 'Capital',
+			xtype: 'textfield',
+			value: options.data['Capital'],
+			fieldLabel: 'Capital'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [{
+			xtype: 'fieldset',
+			title: 'Personal',
+			items: [dict['Firstname'], dict['Lastname'], dict['From'], dict['To']]
+		}, {
+			xtype: 'fieldset',
+			title: 'Live',
+			items: [dict['Business'], dict['Capital']]
+		}];
+	}
+});
+
