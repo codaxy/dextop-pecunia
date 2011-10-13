@@ -13,7 +13,7 @@ namespace Pecunia.App.Worldbank.Reports
 	{
 		[GroupingLevel(0, ShowCaption=true, CaptionFormat="{Country}", ShowHeader=true)]		
 		class Item
-		{			
+		{
 			[GroupBy(0, 0, SortDirection = SortDirection.Ascending)]			
 			public String Country { get; set; }
 

@@ -35,6 +35,9 @@ namespace Pecunia.App.Worldbank.Reports
 		[GroupingLevel(0, ShowHeader=true)]		
 		class GdpItem : Base
 		{
+            [TableColumn(HeaderText = "Rank", CellDisplayMode = CellDisplayMode.RowNumber)]
+            public int No { get; set; }
+
 			[TableColumn()]
 			public String Country { get; set; }
 
@@ -57,6 +60,9 @@ namespace Pecunia.App.Worldbank.Reports
 		[GroupingLevel(0, ShowHeader = true)]
 		class GrowthItem : Base
 		{
+            [TableColumn(HeaderText = "Rank", CellDisplayMode = CellDisplayMode.RowNumber)]
+            public int No { get; set; }
+
 			[TableColumn()]
 			public String Country { get; set; }
 
@@ -79,6 +85,9 @@ namespace Pecunia.App.Worldbank.Reports
 		[GroupingLevel(0, ShowHeader = true)]
 		class GniPCItem : Base
 		{
+            [TableColumn(HeaderText = "Rank", CellDisplayMode = CellDisplayMode.RowNumber)]
+            public int No { get; set; }
+
 			[TableColumn()]
 			public String Country { get; set; }
 

@@ -14,6 +14,9 @@ namespace Pecunia.App.Worldbank.Reports
 		[GroupingLevel(0, ShowCaption=true, CaptionFormat="{Year}", ShowHeader=true)]		
 		class Item
 		{
+            [TableColumn(HeaderText = "Rank", CellDisplayMode = CellDisplayMode.RowNumber)]
+            public int No { get; set; }
+
 			[TableColumn()]
 			public String Country { get; set; }
 
