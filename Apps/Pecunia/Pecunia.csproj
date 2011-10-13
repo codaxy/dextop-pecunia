@@ -34,14 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\packages\AjaxMin.4.30.4295.16112\lib\AjaxMin.dll</HintPath>
+    </Reference>
     <Reference Include="Codaxy.CodeReports">
       <HintPath>..\..\packages\Codaxy.CodeReports.0.1.1\lib\Codaxy.CodeReports.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.CodeReports.Exporters.Html">
       <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Html.0.1.1\lib\Codaxy.CodeReports.Exporters.Html.dll</HintPath>
     </Reference>
-    <Reference Include="Codaxy.CodeReports.Exporters.Text">
-      <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Text.0.1.0\lib\Codaxy.CodeReports.Exporters.Text.dll</HintPath>
+    <Reference Include="Codaxy.CodeReports.Exporters.Text, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Text.0.1.5\lib\Codaxy.CodeReports.Exporters.Text.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.CodeReports.Exporters.Xlio">
       <HintPath>..\..\packages\Codaxy.CodeReports.Exporters.Xlio.0.1.0\lib\Codaxy.CodeReports.Exporters.Xlio.dll</HintPath>
@@ -52,23 +55,21 @@
     <Reference Include="Codaxy.Common.Localization">
       <HintPath>..\..\packages\Codaxy.Common.Localization.0.5.5\lib\Codaxy.Common.Localization.dll</HintPath>
     </Reference>
-    <Reference Include="Codaxy.Dextop">
-      <HintPath>..\..\packages\Codaxy.Dextop.Core.0.7.11\lib\Codaxy.Dextop.dll</HintPath>
+    <Reference Include="Codaxy.Dextop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Codaxy.Dextop.Core.0.7.15\lib\Codaxy.Dextop.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Xlio">
-      <HintPath>..\..\packages\Codaxy.Xlio.0.8.4\lib\Codaxy.Xlio.dll</HintPath>
+      <HintPath>..\..\packages\Codaxy.Xlio.0.8.5\lib\Codaxy.Xlio.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Xlio.XmlSerializers">
-      <HintPath>..\..\packages\Codaxy.Xlio.0.8.4\lib\Codaxy.Xlio.XmlSerializers.dll</HintPath>
-    </Reference>
-    <Reference Include="EcmaScript.NET.modified">
-      <HintPath>..\..\packages\YUICompressor.NET.1.6.0.2\lib\net35\EcmaScript.NET.modified.dll</HintPath>
+      <HintPath>..\..\packages\Codaxy.Xlio.0.8.5\lib\Codaxy.Xlio.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
@@ -92,9 +93,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Yahoo.Yui.Compressor">
-      <HintPath>..\..\packages\YUICompressor.NET.1.6.0.2\lib\net35\Yahoo.Yui.Compressor.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Panels\Contacts\ContactsPanel.cs" />
@@ -110,8 +108,10 @@
     <Compile Include="App\Worldbank\Reports\GdpByYear.cs" />
     <Content Include="App\Panels\Contacts\ContactsPanel.js" />
     <Content Include="client\css\report-preview.css" />
+    <Compile Include="Controllers\ContactController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\ContentController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -119,7 +119,9 @@
     <Compile Include="PdfConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AssemblyService.cs" />
-    <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Services\ContactService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\CurrencyHistoryService.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\StockService.cs" />
@@ -177,6 +179,7 @@
     <Content Include="client\lib\dextop\js\ux\Ext.ux.CheckColumn.js" />
     <Content Include="client\lib\dextop\js\ux\Ext.ux.FilteredCombo.js" />
     <Content Include="client\lib\dextop\js\ux\Ext.ux.grid.plugin.ActionManager.js" />
+    <Content Include="client\lib\dextop\js\ux\Ext.ux.grid.plugin.AutoSelect.js" />
     <Content Include="client\lib\dextop\js\ux\Ext.ux.KeyMapPlugin.js" />
     <Content Include="client\lib\dextop\js\ux\Ext.ux.PageSizeComboBox.js" />
     <Content Include="client\lib\dextop\js\Window.js" />

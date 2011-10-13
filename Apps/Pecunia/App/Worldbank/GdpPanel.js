@@ -43,14 +43,7 @@
 						hideHeaders: true,
 						remote: this.remote,
 						storeOptions: {
-							autoLoad: true,
-							listeners: {
-								scope: this,
-								load: function (store) {
-									var grid = this.down('swissarmygrid');
-									grid.getSelectionModel().select(store.getAt(0));
-								}
-							}
+							autoLoad: true
 						},
 						selModel: Ext.create('Ext.selection.RowModel', {
 							listeners: {
