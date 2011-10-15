@@ -44,6 +44,5 @@ Ext.define('Pecunia.controls.Item', {
 		this.el = btn;
 
 		btn.on('click', this.onClick, this);		
-	},
-			
+	}			
 });

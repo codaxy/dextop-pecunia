@@ -58,6 +58,5 @@
 					this.tabs.setActiveTab(panel);
 			}
 		});
-    },
-
+    }
 });

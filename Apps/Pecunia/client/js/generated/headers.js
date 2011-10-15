@@ -1,121 +1,3 @@
-Ext.define('Pecunia.columns.Contact', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Firstname"] = {
-			text: this.FirstnameText,
-			width: 200,
-			dataIndex: 'Firstname',
-			type: 'string'
-		};
-		dict["Lastname"] = {
-			text: this.LastnameText,
-			width: 200,
-			dataIndex: 'Lastname',
-			type: 'string'
-		};
-		dict["From"] = {
-			text: this.FromText,
-			width: 200,
-			dataIndex: 'From',
-			type: 'date'
-		};
-		dict["To"] = {
-			text: this.ToText,
-			width: 200,
-			dataIndex: 'To',
-			type: 'date'
-		};
-		dict["Business"] = {
-			text: this.BusinessText,
-			width: 200,
-			dataIndex: 'Business',
-			type: 'string'
-		};
-		dict["Capital"] = {
-			text: this.CapitalText,
-			width: 200,
-			dataIndex: 'Capital',
-			type: 'int'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Firstname'], dict['Lastname'], dict['From'], dict['To'], dict['Business'], dict['Capital']];
-	},
-	FirstnameText: 'Firstname',
-	LastnameText: 'Lastname',
-	FromText: 'From',
-	ToText: 'To',
-	BusinessText: 'Science',
-	CapitalText: 'Science'
-});
-Ext.define('Pecunia.GdpPanel.columns.ReportType', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Title"] = {
-			text: this.TitleText,
-			flex: 1,
-			dataIndex: 'Title',
-			type: 'string'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Title']];
-	},
-	TitleText: 'Title'
-});
-Ext.define('Pecunia.columns.Stock', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Name"] = {
-			text: this.NameText,
-			flex: 1,
-			width: 200,
-			dataIndex: 'Name',
-			type: 'string'
-		};
-		dict["Code"] = {
-			text: this.CodeText,
-			width: 100,
-			dataIndex: 'Code',
-			type: 'string'
-		};
-		dict["Capital"] = {
-			text: this.CapitalText,
-			width: 100,
-			dataIndex: 'Capital',
-			type: 'float'
-		};
-		dict["Change"] = {
-			text: this.ChangeText,
-			width: 100,
-			dataIndex: 'Change',
-			type: 'float'
-		};
-		dict["Price"] = {
-			text: this.PriceText,
-			width: 100,
-			dataIndex: 'Price',
-			type: 'float'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Name'], dict['Code'], dict['Capital'], dict['Change'], dict['Price']];
-	},
-	NameText: 'Name',
-	CodeText: 'Code',
-	CapitalText: 'Capital',
-	ChangeText: 'Change',
-	PriceText: 'Price'
-});
 Ext.define('Pecunia.CoursesPanel.columns.RateModel', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
@@ -193,4 +75,93 @@ Ext.define('Pecunia.UsersPanel.columns.User', {
 	UsernameText: 'Username',
 	DisplayNameText: 'Display Name',
 	EMailText: 'EMail'
+});
+Ext.define('Pecunia.columns.Stock', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Code"] = {
+			text: this.CodeText,
+			width: 60,
+			dataIndex: 'Code',
+			type: 'string'
+		};
+		dict["Name"] = {
+			text: this.NameText,
+			flex: 1,
+			dataIndex: 'Name',
+			type: 'string'
+		};
+		dict["Value"] = {
+			text: this.ValueText,
+			width: 70,
+			dataIndex: 'Value',
+			type: 'float'
+		};
+		dict["Price"] = {
+			text: this.PriceText,
+			width: 70,
+			dataIndex: 'Price',
+			type: 'float'
+		};
+		dict["Change"] = {
+			text: this.ChangeText,
+			width: 70,
+			dataIndex: 'Change',
+			type: 'float'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Code'], dict['Name'], dict['Value'], dict['Price'], dict['Change']];
+	},
+	CodeText: 'Code',
+	NameText: 'Name',
+	ValueText: 'Value (B$)',
+	PriceText: 'Price',
+	ChangeText: 'Change (%)'
+});
+Ext.define('Pecunia.columns.Contact', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Name"] = {
+			text: this.NameText,
+			flex: 1,
+			dataIndex: 'Name',
+			type: 'string'
+		};
+		dict["Fortune"] = {
+			text: this.FortuneText,
+			width: 100,
+			dataIndex: 'Fortune',
+			type: 'float'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Name'], dict['Fortune']];
+	},
+	NameText: 'Name',
+	FortuneText: 'Fortune'
+});
+Ext.define('Pecunia.GdpPanel.columns.ReportType', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Title"] = {
+			text: this.TitleText,
+			flex: 1,
+			dataIndex: 'Title',
+			type: 'string'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Title']];
+	},
+	TitleText: 'Title'
 });

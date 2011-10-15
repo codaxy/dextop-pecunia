@@ -56,3 +56,10 @@
     background-image: url('icons/home.png');
     background-repeat: no-repeat;
 }
+
+.wallet 
+{
+     background-position: center center;
+    background-image: url('icons/kwallet.png');
+    background-repeat: no-repeat;
+}

@@ -95,18 +95,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Panels\Contacts\ContactsPanel.cs" />
-    <Compile Include="App\Panels\Courses\CoursesPanel.cs" />
-    <Compile Include="App\Panels\Stocks\StockPanel.cs" />
+    <Compile Include="App\Finance\ContactsPanel.cs" />
+    <Compile Include="App\Finance\CoursesPanel.cs" />
+    <Compile Include="App\Finance\StockPanel.cs" />
     <Compile Include="App\Session.cs" />
     <Compile Include="App\UsersPanel.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Application.Module.cs" />
-    <Compile Include="App\Worldbank\GdpPanel.cs" />
-    <Compile Include="App\Worldbank\Reports\GdpYearColumns.cs" />
-    <Compile Include="App\Worldbank\Reports\GdpByCountry.cs" />
-    <Compile Include="App\Worldbank\Reports\GdpByYear.cs" />
-    <Content Include="App\Panels\Contacts\ContactsPanel.js" />
+    <Compile Include="App\Finance\GdpPanel.cs" />
+    <Compile Include="App\Finance\Reports\GdpYearColumns.cs" />
+    <Compile Include="App\Finance\Reports\GdpByCountry.cs" />
+    <Compile Include="App\Finance\Reports\GdpByYear.cs" />
+    <Content Include="App\Finance\ContactsPanel.js" />
+    <Content Include="App\Navigation\icons\kwallet.png" />
+    <Content Include="client\css\images\export\excel.png" />
+    <Content Include="client\css\images\export\pdf.png" />
+    <Content Include="client\css\images\export\text.png" />
     <Content Include="client\css\report-preview.css" />
     <Compile Include="Controllers\ContactController.cs">
       <SubType>Code</SubType>
@@ -138,11 +142,11 @@
     <Content Include="App\Navigation\icons\shares.png" />
     <Content Include="App\Navigation\navigation.css" />
     <Content Include="App\Navigation\NavigationBar.js" />
-    <Content Include="App\Panels\Courses\CoursesPanel.js" />
-    <Content Include="App\Panels\Stocks\StockPanel.js" />
+    <Content Include="App\Finance\CoursesPanel.js" />
+    <Content Include="App\Finance\StockPanel.js" />
     <Content Include="App\UsersPanel.js" />
     <Content Include="App\Session.js" />
-    <Content Include="App\Worldbank\GdpPanel.js" />
+    <Content Include="App\Finance\GdpPanel.js" />
     <Content Include="browse.htm" />
     <Content Include="client\css\Content.css" />
     <Content Include="client\css\images\glossymetal.jpg" />
@@ -205,8 +209,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Panels\Reports\" />
-    <Folder Include="App\Panels\Transactions\" />
     <Folder Include="bin\" />
     <Folder Include="Cache\" />
     <Folder Include="client\js\cache\" />

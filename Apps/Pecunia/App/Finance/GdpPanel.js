@@ -66,18 +66,21 @@
 						},
 						items: [{
 							text: 'PDF',
+							iconCls: 'pdf',
 							handler: function () {
 								var record = this.down('swissarmygrid').getSelectionModel().getLastSelected();
 								window.open(this.remote.getAjaxUrl({ type: record.get('ReportId'), format: 'pdf' }));
 							}
 						}, {
 							text: 'Excel',
+							iconCls: 'excel',
 							handler: function () {
 								var record = this.down('swissarmygrid').getSelectionModel().getLastSelected();
 								window.open(this.remote.getAjaxUrl({ type: record.get('ReportId'), format: 'xlsx' }));
 							}
 						}, {
 							text: 'Text',
+							iconCls: 'text',
 							handler: function () {
 								var record = this.down('swissarmygrid').getSelectionModel().getLastSelected();
 								window.open(this.remote.getAjaxUrl({ type: record.get('ReportId'), format: 'text' }));

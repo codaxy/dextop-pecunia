@@ -22,7 +22,7 @@
 			},
 			listeners: {
 				scope: this,
-				itemclick: this.refreshChart = function () {
+				select: this.refreshChart = function () {
 					var record = grid.getSelectionModel().getLastSelected();
 					if (record) {
 						historyStore.load({

@@ -19,38 +19,13 @@
 					type: 'stocks',
 					iconCls: 'shares'
 				}, {
-					title: 'Contacts',
+					title: 'Wealthy People',
 					type: 'contacts',
-					iconCls: 'contacts'
+					iconCls: 'wallet'
 				}, {
 					title: 'GDP',
 					type: 'gdp',
 					iconCls: 'worldbank'
-				}]
-			}, {
-				title: 'Cool Topic 1',
-				xtype: 'navigationpanel',
-				expanded: true,
-				data: [{
-					title: 'Manage Users',
-					type: 'users',
-					iconCls: 'account'
-				}]
-			}, {
-				title: 'Cool Topic 2',
-				xtype: 'navigationpanel',
-				data: [{
-					title: 'Manage Users',
-					type: 'users',
-					iconCls: 'account'
-				}]
-			}, {
-				title: 'Administration',
-				xtype: 'navigationpanel',
-				data: [{
-					title: 'Manage Users',
-					type: 'users',
-					iconCls: 'account'
 				}]
 			}]
 		});

@@ -39,7 +39,7 @@ namespace Pecunia.App.Worldbank
 				new ReportType { ReportId = "GdpByCountry", Title = "GDP By Country" },
 				new ReportType { ReportId = "BiggestCountries", Title = "Biggest Countries" },
 				new ReportType { ReportId = "FastestGrowingCountries", Title = "Fastest Growing Countries" },
-				new ReportType { ReportId = "BestCountries", Title = "Best Countries" },
+				new ReportType { ReportId = "BestCountries", Title = "Best Countries (GNI per Capita)" },
 			});
         }
 

@@ -17,7 +17,7 @@ namespace Pecunia.App.Worldbank.Reports
             [TableColumn(HeaderText = "Rank", CellDisplayMode = CellDisplayMode.RowNumber)]
             public int No { get; set; }
 
-			[TableColumn()]
+			[TableColumn(SortIndex=0, SortDirection=SortDirection.Ascending)]
 			public String Country { get; set; }
 
 			[GroupBy(0, 0, SortDirection=SortDirection.Descending)]			
@@ -29,7 +29,7 @@ namespace Pecunia.App.Worldbank.Reports
 			[TableColumn(Format = "{0:n}", HeaderText="GNI Per Capita")]
 			public decimal? GniPerCapita { get; set; }
 
-			[TableColumn(HeaderText="Growth", Format="{0:n}%", SortIndex=0, SortDirection=SortDirection.Descending)]
+			[TableColumn(HeaderText="Growth", Format="{0:n}%")]
 			public decimal? GdpGrowth { get; set; }
 		}
 

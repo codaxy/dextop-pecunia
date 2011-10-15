@@ -7,12 +7,14 @@ using System.IO;
 using Pecunia.App;
 using Newtonsoft.Json.Linq;
 using System.Globalization;
+using Codaxy.Dextop;
+using System.Diagnostics;
 
 namespace Pecunia.Services
 {
     public class StockService
     {
-        public static List<Stock> getStockData()
+        public static List<Stock> GetStockData()
         {
 
             String stockCodes = "AAPL+XOM+ORCL+MSFT+INTC+GOOG+IBM+CHL+PTR";
@@ -20,16 +22,22 @@ namespace Pecunia.Services
 
             String stockRequstUrl = "http://finance.yahoo.com/d/quotes.csv?s=" + stockCodes + "&f=" + resultConfig;
 
-            WebClient client = new WebClient();
-            Stream stream = client.OpenRead(stockRequstUrl);
-            StreamReader reader = new StreamReader(stream);
+			var cacheFile = DextopUtil.MapPath("Cache/stocks.csv");
 
-            // read csv share data 
-            List<String> lines = new List<String>();
-            while (!reader.EndOfStream)
-                lines.Add(reader.ReadLine().Replace("\"", ""));
-            stream.Close();
+			if (!File.Exists(cacheFile) || File.GetLastWriteTime(cacheFile) < DateTime.Now.AddHours(-1))
+			{
+				try
+				{
+					WebClient client = new WebClient();
+					client.DownloadFile(stockRequstUrl, cacheFile);
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine(ex);
+				}
+			}
 
+			var lines = File.ReadAllLines(cacheFile);
 
             List<Stock> stocks = new List<Stock>();
 
@@ -38,11 +46,11 @@ namespace Pecunia.Services
                 String[] attributes = line.Split(',');
                 stocks.Add(new Stock()
                 {
-                    Code = attributes[0],
-                    Name = attributes[1],
-                    Change = Decimal.Parse(attributes[2], CultureInfo.InvariantCulture.NumberFormat),
-                    Capital = Decimal.Parse(attributes[3].TrimEnd('B'), CultureInfo.InvariantCulture.NumberFormat),
-                    Price = Decimal.Parse(attributes[4], CultureInfo.InvariantCulture.NumberFormat)
+                    Code = attributes[0].Trim('"'),
+					Name = attributes[1].Trim('"'),
+                    Change = Decimal.Parse(attributes[2], CultureInfo.InvariantCulture) / 10,
+                    Value = Decimal.Parse(attributes[3].TrimEnd('B'), CultureInfo.InvariantCulture),
+                    Price = Decimal.Parse(attributes[4], CultureInfo.InvariantCulture)
                 });
             }
 

@@ -30,7 +30,7 @@ namespace Pecunia.App
 
         Stock[] Load(DextopReadFilter filter)
         {
-            var data = StockService.getStockData();
+            var data = StockService.GetStockData();
             return data.ToArray();
         }
 
@@ -40,23 +40,21 @@ namespace Pecunia.App
     [DextopGrid]
     public class Stock
     {
+		[DextopGridColumn(width = 60, text = "Code")]
+		public String Code { get; set; }
+
         [DextopModelId]
-        [DextopGridColumn(width = 200, text = "Name", flex= 1)]
-        public String Name { get; set; }
+        [DextopGridColumn(text = "Name", flex= 1)]
+        public String Name { get; set; }      
 
-        [DextopGridColumn(width = 100, text = "Code")]
-        public String Code { get; set; }
+        [DextopGridColumn(width = 70, text = "Value (B$)")]
+		public decimal? Value { get; set; }
 
-        [DextopGridColumn(width = 100, text = "Capital")]
-        public decimal? Capital { get; set; }
-
-        [DextopGridColumn(width = 100, text = "Change")]
-        public decimal? Change { get; set; }
-
-        [DextopGridColumn(width = 100, text = "Price")]
+        [DextopGridColumn(width = 70, text = "Price")]
         public decimal? Price { get; set; }
 
-       
+		[DextopGridColumn(width = 70, text = "Change (%)")]
+		public decimal? Change { get; set; }
     }     
         
 }

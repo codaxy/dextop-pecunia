@@ -127,8 +127,8 @@ namespace Pecunia.App.Worldbank.Reports
 			var table = TableGenerator.GetTable(typeof(GdpItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
-			for (var i = 1; i < 6; i++)
-				table.Columns[i].HeaderText = (lastYear - 5 + i).ToString();
+			for (var i = 0; i < 5; i++)
+				table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();
 
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
 			flow.Add(table);
@@ -156,8 +156,8 @@ namespace Pecunia.App.Worldbank.Reports
 			var table = TableGenerator.GetTable(typeof(GrowthItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
-			for (var i = 1; i < 6; i++)
-				table.Columns[i].HeaderText = (lastYear - 5 + i).ToString();
+			for (var i = 0; i < 5; i++)
+				table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();
 
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
 			flow.Add(table);
@@ -185,8 +185,8 @@ namespace Pecunia.App.Worldbank.Reports
 			var table = TableGenerator.GetTable(typeof(GniPCItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
-			for (var i = 1; i < 6; i++)
-				table.Columns[i].HeaderText = (lastYear - 5 + i).ToString();
+			for (var i = 0; i < 5; i++)
+				table.Columns[i+2].HeaderText = (lastYear - 4 + i).ToString();
 
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
 			flow.Add(table);

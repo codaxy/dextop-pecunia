@@ -28,7 +28,7 @@ body
 #footer
 {
     padding-left: 5px;
-    font-family: 'Sunshiney', cursive;
+    font-family: 'Comic Sans MS';
     /*font-weight: bold;*/
      color: #FFFF80;
     text-shadow: 1px 1px 1px black;
@@ -54,3 +54,71 @@ body
 	text-align:center;
 }
 
+/* Rich People */
+
+.photo 
+{
+    max-width: 200px;
+}
+
+.person 
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 8pt;
+}
+
+.person td 
+{
+    padding: 2px;
+    vertical-align: top;
+}
+
+.prop-header 
+{
+    text-align: right;   
+    padding-left: 10px !important; 
+}
+
+.prop-value 
+{
+    font-weight: bold;
+    padding-left: 10px !important; 
+}
+
+.person p
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    max-width: 600px;
+}
+    
+.person h1 
+{
+    font-size: 1.5em;
+    /*margin-top: 0.83em;*/
+    /*margin-bottom: 0.83em;*/
+}
+
+.person h2 
+{
+    font-size: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/* PDF, Excel, Text */
+
+.pdf 
+{
+    background-image: url('images/export/pdf.png') !important;
+}
+
+.excel
+{
+    background-image: url('images/export/excel.png') !important;
+}
+
+.text
+{
+    background-image: url('images/export/text.png') !important;
+}
