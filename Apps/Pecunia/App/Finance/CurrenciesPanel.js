@@ -1,9 +1,11 @@
-﻿Ext.define('Pecunia.CoursesPanel', {
+﻿Ext.define('Pecunia.CurrenciesPanel', {
 	extend: 'Dextop.Panel',
 
-	title: 'Courses',
+	title: 'Currencies',
 	border: true,
 	closable: true,
+
+	uniquePanelType: 'currencies',
 
 	initComponent: function () {
 

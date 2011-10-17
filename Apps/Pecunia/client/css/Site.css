@@ -59,6 +59,16 @@ body
 .photo 
 {
     max-width: 200px;
+    border: 1px solid gray;
+}
+
+.photo-holder 
+{
+    float: left; 
+    padding: 10px;
+    border: 1px solid gray;
+    margin: 0 20px 16px 0;
+    background-image: url(images/glossymetal.jpg);
 }
 
 .person 
@@ -121,4 +131,71 @@ body
 .text
 {
     background-image: url('images/export/text.png') !important;
+}
+
+/* ------------------- Navigation ---------------------- */
+
+.welcome-navigation-pane
+{
+    margin: 10px 0px 0px 10px;
+    -border: 1px solid #C0C0C0;
+    text-align: center;
+    float: left;
+    width: 128px;
+    height: 128px;
+    font-family: Verdana;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    padding-top: 5px;
+    background-color: #F6F6F6;
+    cursor: pointer;
+}
+
+.welcome-navigation-pane.x-item-over
+{
+    background-color: #FFFFB9;
+}
+
+
+.account
+{
+    background-position: center center;
+    background-image: url('icons/account.png');
+    background-repeat: no-repeat;
+}
+
+.accounting
+{
+    background-position: center center;
+    background-image: url('icons/accounting.png');
+    background-repeat: no-repeat;
+}
+
+.shares
+{
+    background-position: center center;
+    background-image: url('icons/shares.png');
+    background-repeat: no-repeat;
+}
+
+.contacts
+{
+    background-position: center center;
+    background-image: url('icons/categories.png');
+    background-repeat: no-repeat;
+}
+
+
+.worldbank
+{
+    background-position: center center;
+    background-image: url('icons/home.png');
+    background-repeat: no-repeat;
+}
+
+.wallet 
+{
+     background-position: center center;
+    background-image: url('icons/kwallet.png');
+    background-repeat: no-repeat;
 }

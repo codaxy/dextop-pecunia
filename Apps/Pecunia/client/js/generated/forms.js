@@ -1,4 +1,4 @@
-Ext.define('Pecunia.CoursesPanel.form.ConvertForm', {
+Ext.define('Pecunia.CurrenciesPanel.form.ConvertForm', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(options){
 		options = options || {};
@@ -34,7 +34,7 @@ Ext.define('Pecunia.CoursesPanel.form.ConvertForm', {
 	}
 });
 
-Ext.define('Pecunia.form.Contact', {
+Ext.define('Pecunia.form.RichPerson', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(options){
 		options = options || {};

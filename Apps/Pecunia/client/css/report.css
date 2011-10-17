@@ -2,12 +2,11 @@
 { 
     margin: 0;   
     
-    font-family: sans-serif;
+    font-family: 'Segoe UI';
     font-size: 8pt;
 }
 
-table {
-    font-family: sans-serif;
+table {    
     font-size: 8pt;
     width: 100%;
     padding: 5px;

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WorldBankServicesTests.cs" />
+    <Compile Include="Tests\GdpProviderTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PetaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,24 +6,26 @@ using Pecunia.App;
 using Newtonsoft.Json;
 using Codaxy.Dextop;
 using System.IO;
+using Pecunia.App.Finance;
+using Pecunia.Model;
 
 namespace Pecunia.Services
 {
-    public class ContactService
+    public class RichPeopleProvider
     {
-		public static List<Contact> GetContacts()
+		public static List<RichPerson> GetContacts()
 		{
-			List<Contact> contacts = new List<Contact>();
+			List<RichPerson> contacts = new List<RichPerson>();
 
 			var dataFilePath = DextopUtil.MapPath("rich-people.json");
 
-			return JsonConvert.DeserializeObject<List<Contact>>(File.ReadAllText(dataFilePath), new JsonSerializerSettings
+			return JsonConvert.DeserializeObject<List<RichPerson>>(File.ReadAllText(dataFilePath), new JsonSerializerSettings
 			{
 				Converters = new[] { new Newtonsoft.Json.Converters.IsoDateTimeConverter() }
 			});
 		}
 
-		public static void SaveContacts(IList<Contact> contacts)
+		public static void SaveContacts(IList<RichPerson> contacts)
 		{
 			var dataFilePath = DextopUtil.MapPath("rich-people.json");
 

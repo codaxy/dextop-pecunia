@@ -1,21 +1,23 @@
-﻿Ext.define('Pecunia.ContactsPanel', {
+﻿Ext.define('Pecunia.RichPeoplePanel', {
 	extend: 'Dextop.Panel',
 
-	title: 'Contacts',
+	title: 'Rich People',
 	border: true,
 	closable: true,
+
+	uniquePanelType: 'rich-people',
 
 	initComponent: function () {
 
 		var preview = Ext.widget('panel', {
 			autoScroll: true,
 			region: 'center',
-			bodyStyle: 'padding-top: 5px',
+			bodyStyle: 'padding: 20px;',
 			border: false,
 			tpl: new Ext.XTemplate('<div class="person">',
-			'<div style="float: left; padding: 0 5px 0px 0;">{[this.photo(values)]}</div>',
+			'<div class="photo-holder">{[this.photo(values)]}</div>',
 			'<h1>{Name}</h1>',
-			'<p><i>Source:</i> <a href="{WikipediaUrl}" target="_blank">Wikipedia</a></p>',
+			'<p><i>Source: <a href="{WikipediaUrl}" target="_blank">Wikipedia</a></i></p>',
 			'<table>',
 			'<tr><td class="prop-header">Fortune:</td><td class="prop-value">US$ {Fortune} billion</td></tr>',
 			'<tr><td class="prop-header">Occupation:</td><td class="prop-value">{[this.occupation(values.Occupation)]}</td></tr>',
@@ -31,7 +33,7 @@
 			'</div>', {
 				photo: function (values) {
 					if (values.PhotoUrl)
-						return '<image class="photo" src="' + values.PhotoUrl + '" />';
+						return '<img class="photo" src="' + values.PhotoUrl + '" />';
 					return '';
 				},
 				occupation: function (value) {

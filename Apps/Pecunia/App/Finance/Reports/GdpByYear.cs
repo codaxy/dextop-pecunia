@@ -7,7 +7,7 @@ using Codaxy.CodeReports.CodeModel;
 using Codaxy.CodeReports.Data;
 using Codaxy.CodeReports.Controls;
 
-namespace Pecunia.App.Worldbank.Reports
+namespace Pecunia.App.Finance.Reports
 {
 	public class GdpByYearReport
 	{
@@ -36,7 +36,7 @@ namespace Pecunia.App.Worldbank.Reports
 		public static Report Generate()
 		{
 			var dc = new DataContext();
-			var data = from item in Pecunia.Services.Worldbank.GDPService.LoadData()
+            var data = from item in Pecunia.Services.GdpDataProvider.GetData()
 					   select new Item
 					   {
 						   Country = item.Country,
@@ -48,7 +48,8 @@ namespace Pecunia.App.Worldbank.Reports
 			dc.AddTable("data", data.ToArray());
 			
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
-			flow.AddTable<Item>("data");
+			var table = flow.AddTable<Item>("data");
+            table.Columns.Single(a => a.DataField == "GdpGrowth").ConditionalFormatting = ConditionalFormatters.PercentChange;
 			
 			return Report.CreateReport(flow, dc);
 		}

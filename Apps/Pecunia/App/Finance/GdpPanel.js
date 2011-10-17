@@ -5,6 +5,8 @@
 	border: true,
 	closable: true,
 
+	uniquePanelType: 'gdp',
+
 	initComponent: function () {
 
 		Ext.apply(this, {

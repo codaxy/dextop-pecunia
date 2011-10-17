@@ -1,10 +1,12 @@
-﻿Ext.define('Pecunia.StockPanel', {
+﻿Ext.define('Pecunia.StocksPanel', {
     extend: 'Dextop.Panel',
 
     title: 'Stocks',
     border: true,
     closable: true,
     barChart: false,
+
+	uniquePanelType: 'stocks',
 
     initComponent: function () {
         var me = this;

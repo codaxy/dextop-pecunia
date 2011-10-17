@@ -10,9 +10,9 @@ using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Codaxy.Dextop;
 
-namespace Pecunia.Services.Worldbank
+namespace Pecunia.Services
 {
-	public class GDPService
+	public class GdpDataProvider
 	{
 		class Indicators
 		{
@@ -59,7 +59,7 @@ namespace Pecunia.Services.Worldbank
 
 		public static string CacheFilePath { get; set; }
 
-		public static IList<CountryData> LoadData()
+		public static IList<CountryData> GetData()
 		{
 			lock (countryData)
 			{
@@ -105,12 +105,7 @@ namespace Pecunia.Services.Worldbank
 			}
 		}
 
-
-		
-
 		static ConcurrentDictionary<String, CountryData> countryData = new ConcurrentDictionary<string, CountryData>();
-
-		
 	}
 
 	public class CountryData

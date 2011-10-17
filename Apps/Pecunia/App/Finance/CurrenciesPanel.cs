@@ -11,13 +11,14 @@ using System.Xml;
 using Codaxy.Dextop.Forms;
 using Pecunia.Services;
 using Codaxy.Common;
+using Pecunia.Model;
 
-namespace Pecunia.App
+namespace Pecunia.App.Finance
 {
-    public class CoursesPanel : DextopWindow
+    public class CurrenciesPanel : DextopWindow
     {
-        [DextopRemotableConstructor(alias = "courses")]
-        public CoursesPanel()
+        [DextopRemotableConstructor(alias = "currencies")]
+        public CurrenciesPanel()
         {
             
         }
@@ -27,8 +28,10 @@ namespace Pecunia.App
             base.InitRemotable(remote, config);			
             Remote.AddStore("model", Load);
             Remote.AddStore("history", LoadHistory);
-			Remote.AddLookupData("Currency", CurrencyService.GetCurrencyList().Rates.Select(a => new Object[] { 
-				a.ISOCode, String.Format("{0} ({1})", a.Currency, a.ISOCode) }).ToArray());
+            Remote.AddLookupData("Currency", CurrencyDataProvider.GetCurrencyList().Rates.Select(a => new Object[] { 
+				a.ISOCode, 
+                String.Format("{0} ({1})", a.Currency, a.ISOCode) 
+            }).ToArray());
 			
 			config["convertData"] = new ConvertForm
 			{
@@ -42,7 +45,7 @@ namespace Pecunia.App
 			var currency = filter.Params.SafeGet("Currency", "EUR");
 			var amount = filter.Params.SafeGet("Amount", 100.0m);
 			
-			var data = CurrencyService.GetCurrencyList(currency);
+			var data = CurrencyDataProvider.GetCurrencyList(currency);
 			return data.Rates.Select(a => new RateModel
 			{
 				Currency = a.Currency,
@@ -59,9 +62,9 @@ namespace Pecunia.App
             var baseCurency = filter.Params.SafeGet<String>("BaseCurrencyISOCode", "EUR");
 
             if (baseCurency == "EUR")
-                return CurrencyHistoryService.GetCurrencyRateHistory(iso);
+                return CurrencyHistoryDataProvider.GetCurrencyRateHistory(iso);
             else
-                return CurrencyHistoryService.GetCurrencyRateComparisionHistory(iso, baseCurency);
+                return CurrencyHistoryDataProvider.GetCurrencyRateComparisionHistory(iso, baseCurency);
         }
 
 		[DextopModel]

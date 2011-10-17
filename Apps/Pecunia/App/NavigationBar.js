@@ -1,4 +1,4 @@
-﻿Ext.define('Pecunia.navigation.NavigationBar', {
+﻿Ext.define('Pecunia.NavigationBar', {
 	extend: 'Ext.panel.Panel',
 	width: 150,
 	initComponent: function () {
@@ -12,15 +12,15 @@
 				xtype: 'navigationpanel',
 				data: [{
 					title: 'Currencies',
-					type: 'courses',
+					type: 'currencies',
 					iconCls: 'accounting'
 				}, {
 					title: 'Stocks',
 					type: 'stocks',
 					iconCls: 'shares'
 				}, {
-					title: 'Wealthy People',
-					type: 'contacts',
+					title: 'Rich People',
+					type: 'rich-people',
 					iconCls: 'wallet'
 				}, {
 					title: 'GDP',

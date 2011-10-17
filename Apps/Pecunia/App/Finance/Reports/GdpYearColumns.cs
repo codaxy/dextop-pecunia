@@ -6,9 +6,9 @@ using Codaxy.CodeReports;
 using Codaxy.CodeReports.CodeModel;
 using Codaxy.CodeReports.Data;
 using Codaxy.CodeReports.Controls;
-using Pecunia.Services.Worldbank;
+using Pecunia.Services;
 
-namespace Pecunia.App.Worldbank.Reports
+namespace Pecunia.App.Finance.Reports
 {
 	public class GdpYearColumnReport
 	{
@@ -111,7 +111,7 @@ namespace Pecunia.App.Worldbank.Reports
 		{			
 			var dc = new DataContext();
 			var data = new Dictionary<string, GdpItem>();
-			var src = Pecunia.Services.Worldbank.GDPService.LoadData();
+			var src = Pecunia.Services.GdpDataProvider.GetData();
 			var lastYear = src.Max(a=>a.Year);
 			foreach (var item in src)
 			{
@@ -127,8 +127,10 @@ namespace Pecunia.App.Worldbank.Reports
 			var table = TableGenerator.GetTable(typeof(GdpItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
-			for (var i = 0; i < 5; i++)
-				table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();
+            for (var i = 0; i < 5; i++)
+            {
+                table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();
+            }
 
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
 			flow.Add(table);
@@ -140,7 +142,7 @@ namespace Pecunia.App.Worldbank.Reports
 		{
 			var dc = new DataContext();
 			var data = new Dictionary<string, GrowthItem>();
-			var src = Pecunia.Services.Worldbank.GDPService.LoadData();
+			var src = Pecunia.Services.GdpDataProvider.GetData();
 			var lastYear = src.Max(a => a.Year);
 			foreach (var item in src)
 			{
@@ -156,8 +158,11 @@ namespace Pecunia.App.Worldbank.Reports
 			var table = TableGenerator.GetTable(typeof(GrowthItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
-			for (var i = 0; i < 5; i++)
-				table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();
+            for (var i = 0; i < 5; i++)
+            {
+                table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();
+                table.Columns[i + 2].ConditionalFormatting = ConditionalFormatters.PercentChange;
+            }
 
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
 			flow.Add(table);
@@ -169,7 +174,7 @@ namespace Pecunia.App.Worldbank.Reports
 		{
 			var dc = new DataContext();
 			var data = new Dictionary<string, GniPCItem>();
-			var src = Pecunia.Services.Worldbank.GDPService.LoadData();
+			var src = Pecunia.Services.GdpDataProvider.GetData();
 			var lastYear = src.Max(a => a.Year);
 			foreach (var item in src)
 			{
@@ -185,8 +190,10 @@ namespace Pecunia.App.Worldbank.Reports
 			var table = TableGenerator.GetTable(typeof(GniPCItem), "data");
 			table.Columns.Last().SortIndex = 0;
 			table.Columns.Last().SortDirection = SortDirection.Descending;
-			for (var i = 0; i < 5; i++)
-				table.Columns[i+2].HeaderText = (lastYear - 4 + i).ToString();
+            for (var i = 0; i < 5; i++)
+            {
+                table.Columns[i + 2].HeaderText = (lastYear - 4 + i).ToString();                
+            }
 
 			var flow = new Flow { Orientation = FlowOrientation.Vertical };
 			flow.Add(table);

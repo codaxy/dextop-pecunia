@@ -9,14 +9,14 @@ using Newtonsoft.Json.Linq;
 using System.Globalization;
 using Codaxy.Dextop;
 using System.Diagnostics;
+using Pecunia.Model;
 
 namespace Pecunia.Services
 {
-    public class StockService
+    public class StockDataProvider
     {
         public static List<Stock> GetStockData()
         {
-
             String stockCodes = "AAPL+XOM+ORCL+MSFT+INTC+GOOG+IBM+CHL+PTR";
             String resultConfig     = "snc1j1p";
 

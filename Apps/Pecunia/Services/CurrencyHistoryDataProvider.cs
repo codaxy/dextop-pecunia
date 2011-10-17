@@ -7,10 +7,11 @@ using System.Xml;
 using System.Globalization;
 using System.Diagnostics;
 using Codaxy.Dextop.Data;
+using Pecunia.Model;
 
 namespace Pecunia.Services
 {
-    public class CurrencyHistoryService
+    public class CurrencyHistoryDataProvider
     {        
         static List<CurrencyList> historyList;
         static DateTime cacheTime;
@@ -84,14 +85,4 @@ namespace Pecunia.Services
             }
         }
     }
-
-    [DextopModel]
-    public class CurrencyHistoryRate
-    {
-        [DextopModelId]
-        public DateTime Date { get; set; }
-        public decimal? Rate { get; set; }
-    }
-
-   
 }

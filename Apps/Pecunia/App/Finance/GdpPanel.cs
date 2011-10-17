@@ -18,16 +18,15 @@ using Codaxy.WkHtmlToPdf;
 using Codaxy.CodeReports.Exporters.Text;
 using Codaxy.CodeReports.Exporters.Xlio;
 using Codaxy.CodeReports.Styling;
-using Pecunia.Services.Worldbank;
 
-namespace Pecunia.App.Worldbank
+namespace Pecunia.App.Finance
 {
     public class GdpPanel : DextopWindow
     {
         [DextopRemotableConstructor(alias = "gdp")]
 		public GdpPanel()
         {
-			GDPService.CacheFilePath = DextopUtil.MapPath("Cache/gdp.json");
+			GdpDataProvider.CacheFilePath = DextopUtil.MapPath("Cache/gdp.json");
         }
 
         public override void InitRemotable(DextopRemote remote, DextopConfig config)

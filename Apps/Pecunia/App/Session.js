@@ -6,15 +6,15 @@
 
 		Dextop.data.RendererFactory.register('money', Ext.util.Format.numberRenderer('0.00'));
 
-        // The navigation panel on the left side
-        var navigation = new Pecunia.navigation.NavigationBar({
-            region: 'west',              
-            border: true,
+		// The navigation panel on the left side
+		var navigation = new Pecunia.NavigationBar({
+			region: 'west',
+			border: true,
 			margins: '5 5 5 5',
-            collapseMode: 'mini'
-        });
+			collapseMode: 'mini'
+		});
 
-        this.tabs = Ext.create('Ext.tab.Panel', {
+		this.tabs = Ext.create('Ext.tab.Panel', {
 			border: true,
 			plain: true,
 			region: 'center',
@@ -27,7 +27,7 @@
 			}]
 		});
 
-        this.viewport = Ext.create('Ext.container.Viewport', {
+		this.viewport = Ext.create('Ext.container.Viewport', {
 			renderTo: document.body,
 			layout: 'border',
 			items: [navigation, {
@@ -40,15 +40,23 @@
 				region: 'south',
 				height: 20,
 				xtype: 'container',
-				border: false				
+				border: false
 			}]
 		});
 
-	
+
 	},
 
 	addPanel: function (type, options) {
 		options = options || {};
+		for (var i = 0; i < this.tabs.items.getCount(); i++) {
+			var panelType = this.tabs.items.getAt(i).uniquePanelType;
+			if (panelType === type) {
+				this.tabs.setActiveTab(i);
+				return;
+			}
+		}
+
 		this.remote.Instantiate({ type: type, own: false }, options.serverConfig, {
 			scope: this,
 			success: function (result) {
@@ -58,5 +66,5 @@
 					this.tabs.setActiveTab(panel);
 			}
 		});
-    }
+	}
 });

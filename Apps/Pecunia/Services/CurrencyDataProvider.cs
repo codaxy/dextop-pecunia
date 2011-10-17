@@ -10,7 +10,7 @@ using Codaxy.Common;
 
 namespace Pecunia.Services
 {
-	public static class CurrencyService
+	public static class CurrencyDataProvider
 	{
 		static SortedDictionary<String, String> currencyName;
 

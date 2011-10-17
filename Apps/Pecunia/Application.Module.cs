@@ -21,8 +21,6 @@ namespace Pecunia
                 "App/*/");
 
             RegisterCss("client/css/site.css");
-
-            RegisterCss("App/Navigation/navigation.css");
         }
 
         public override string ModuleName
