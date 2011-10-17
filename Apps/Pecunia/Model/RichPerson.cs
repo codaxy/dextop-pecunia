@@ -45,7 +45,7 @@ namespace Pecunia.Model
         public String Business { get; set; }
 
         [DextopFormField(fieldLabel = "Fortune US$ (billion)")]
-        [DextopGridColumn(width = 100)]
+        [DextopGridColumn(text="Fortune (B$)", width = 100)]
         public double Fortune { get; set; }
 
         [DextopFormField(anchor = "0")]

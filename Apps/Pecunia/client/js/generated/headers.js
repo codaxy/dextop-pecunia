@@ -21,7 +21,7 @@ Ext.define('Pecunia.columns.RichPerson', {
 		return [dict['Name'], dict['Fortune']];
 	},
 	NameText: 'Name',
-	FortuneText: 'Fortune'
+	FortuneText: 'Fortune (B$)'
 });
 Ext.define('Pecunia.GdpPanel.columns.ReportType', {
 	extend: 'Dextop.ItemFactory',
