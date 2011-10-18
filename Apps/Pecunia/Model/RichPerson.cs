@@ -61,5 +61,7 @@ namespace Pecunia.Model
 
         [DextopFormTextArea(anchor = "0", height = 200, labelAlign = "top")]
         public string Extra { get; set; }
+
+        public bool IsLocked { get; set; }
     }
 }

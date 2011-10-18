@@ -49,7 +49,11 @@ namespace Pecunia.App.Finance
 		{
 			foreach (var rec in records)
 			{
-				Data.Remove(rec.Id);
+#if !DEBUG
+                if (rec.IsLocked)
+                    throw new DextopErrorMessageException("This record is protected from removal!");
+#endif
+                Data.Remove(rec.Id);
 			}
 			RichPeopleProvider.SaveContacts(Data.Values.ToArray());
 			return new RichPerson[0];
@@ -59,6 +63,10 @@ namespace Pecunia.App.Finance
 		{
 			foreach (var rec in records)
 			{
+#if !DEBUG
+                if (rec.IsLocked)
+                    throw new DextopErrorMessageException("This record is protected from updates!");
+#endif
 				Data[rec.Id] = rec;
 			}
 			RichPeopleProvider.SaveContacts(Data.Values.ToArray());

@@ -15,7 +15,11 @@
 			bodyStyle: 'padding: 20px;',
 			border: false,
 			tpl: new Ext.XTemplate('<div class="person">',
-			'<div class="photo-holder">{[this.photo(values)]}</div>',
+            '<tpl if="PhotoUrl">',
+			    '<div class="photo-holder">',
+                    '<img class="photo" src="{PhotoUrl}" />',
+                '</div>',
+            '</tpl>',
 			'<h1>{Name}</h1>',
 			'<p><i>Source: <a href="{WikipediaUrl}" target="_blank">Wikipedia</a></i></p>',
 			'<table>',
@@ -31,11 +35,6 @@
 			'<h2>{ExtraTitle}</h2>',
 			'<p>{Extra}</p>',
 			'</div>', {
-				photo: function (values) {
-					if (values.PhotoUrl)
-						return '<img class="photo" src="' + values.PhotoUrl + '" />';
-					return '';
-				},
 				occupation: function (value) {
 					if (!value)
 						return value;
@@ -54,7 +53,8 @@
 			paging: false,
 			editing: 'form',
 			storeOptions: {
-				autoLoad: true,
+			    autoLoad: true,
+                autoRevert: true,
 				autoSync: true,
 				sortOnLoad: true,
 				sorters: [{ property: 'Fortune', direction: 'DESC' }]
