@@ -4,7 +4,38 @@
     font-size: 8pt;
 }
 
-p 
+p, hr
 {
     max-width: 600px;
+}
+
+.pecunia
+{
+    color: #555;
+}
+
+.pecunia em 
+{
+    font-style: normal;
+    font-weight: bold;
+}
+
+h2.pecunia 
+{
+    font-family: 'Playfair Display', Serif;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    font-weight: normal;
+    font-size: 3em;
+}
+
+h2.pecunia .phono 
+{
+    color: #aaa;
+    font-size: 0.5em
+}
+
+hr.pecunia
+{
+    margin: 2em 0 2em 0;
 }

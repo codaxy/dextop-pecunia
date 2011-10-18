@@ -1,3 +1,28 @@
+Ext.define('Pecunia.columns.RichPerson', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Name"] = {
+			text: this.NameText,
+			flex: 1,
+			dataIndex: 'Name',
+			type: 'string'
+		};
+		dict["Fortune"] = {
+			text: this.FortuneText,
+			width: 100,
+			dataIndex: 'Fortune',
+			type: 'float'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Name'], dict['Fortune']];
+	},
+	NameText: 'Name',
+	FortuneText: 'Fortune (B$)'
+});
 Ext.define('Pecunia.GdpPanel.columns.ReportType', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
@@ -15,45 +40,6 @@ Ext.define('Pecunia.GdpPanel.columns.ReportType', {
 		return [dict['Title']];
 	},
 	TitleText: 'Title'
-});
-Ext.define('Pecunia.UsersPanel.columns.User', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Active"] = {
-			text: this.ActiveText,
-			width: 50,
-			dataIndex: 'Active',
-			type: 'boolean'
-		};
-		dict["Username"] = {
-			text: this.UsernameText,
-			width: 100,
-			dataIndex: 'Username',
-			type: 'string'
-		};
-		dict["DisplayName"] = {
-			text: this.DisplayNameText,
-			width: 150,
-			dataIndex: 'DisplayName',
-			type: 'string'
-		};
-		dict["EMail"] = {
-			text: this.EMailText,
-			width: 150,
-			dataIndex: 'EMail',
-			type: 'string'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Active'], dict['Username'], dict['DisplayName'], dict['EMail']];
-	},
-	ActiveText: 'Active',
-	UsernameText: 'Username',
-	DisplayNameText: 'Display Name',
-	EMailText: 'EMail'
 });
 Ext.define('Pecunia.CurrenciesPanel.columns.RateModel', {
 	extend: 'Dextop.ItemFactory',
@@ -140,28 +126,42 @@ Ext.define('Pecunia.columns.Stock', {
 	PriceText: 'Price',
 	ChangeText: 'Change (%)'
 });
-Ext.define('Pecunia.columns.RichPerson', {
+Ext.define('Pecunia.UsersPanel.columns.User', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
 		var dict = {};
-		dict["Name"] = {
-			text: this.NameText,
-			flex: 1,
-			dataIndex: 'Name',
+		dict["Active"] = {
+			text: this.ActiveText,
+			width: 50,
+			dataIndex: 'Active',
+			type: 'boolean'
+		};
+		dict["Username"] = {
+			text: this.UsernameText,
+			width: 100,
+			dataIndex: 'Username',
 			type: 'string'
 		};
-		dict["Fortune"] = {
-			text: this.FortuneText,
-			width: 100,
-			dataIndex: 'Fortune',
-			type: 'float'
+		dict["DisplayName"] = {
+			text: this.DisplayNameText,
+			width: 150,
+			dataIndex: 'DisplayName',
+			type: 'string'
+		};
+		dict["EMail"] = {
+			text: this.EMailText,
+			width: 150,
+			dataIndex: 'EMail',
+			type: 'string'
 		};
 		return dict;
 
 	},
 	buildItems: function(dict){
-		return [dict['Name'], dict['Fortune']];
+		return [dict['Active'], dict['Username'], dict['DisplayName'], dict['EMail']];
 	},
-	NameText: 'Name',
-	FortuneText: 'Fortune'
+	ActiveText: 'Active',
+	UsernameText: 'Username',
+	DisplayNameText: 'Display Name',
+	EMailText: 'EMail'
 });
