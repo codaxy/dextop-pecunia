@@ -116,6 +116,12 @@ body
     margin-bottom: 1em;
 }
 
+.source 
+{
+    font-style: italic;
+}
+
+
 /* PDF, Excel, Text */
 
 .pdf 

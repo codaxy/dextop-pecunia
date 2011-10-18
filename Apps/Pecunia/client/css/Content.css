@@ -42,3 +42,8 @@ hr.pecunia
     border-top: solid 1px #aaa;
     height: 1px;
 }
+
+.source 
+{
+    font-style: italic;
+}
