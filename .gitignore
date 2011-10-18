@@ -7,3 +7,5 @@ packages/*/
 Nuget/*.nupkg
 Nuget/*/lib
 ext
+/Apps/Pecunia/Cache/stocks.csv
+/Apps/Pecunia/Cache/stocks.csv
