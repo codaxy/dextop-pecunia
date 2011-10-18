@@ -38,4 +38,7 @@ h2.pecunia .phono
 hr.pecunia
 {
     margin: 2em 0 2em 0;
+    border-style: solid none none none;
+    border-top: solid 1px #aaa;
+    height: 1px;
 }
