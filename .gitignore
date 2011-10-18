@@ -9,3 +9,5 @@ Nuget/*/lib
 ext
 /Apps/Pecunia/Cache/stocks.csv
 /Apps/Pecunia/Cache/stocks.csv
+/Apps/Pecunia/Pecunia.Publish.xml
+/Apps/Pecunia/client/lib/dextop/css/dextop-min.css
