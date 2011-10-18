@@ -9,14 +9,10 @@ namespace Pecunia.App
 {
     public class Session : DextopSession
     {
-
-
-        [DextopRemotable]
-        DextopConfig CreatePanel(String panelName)
+        public override void InitRemotable(DextopRemote remote, DextopConfig config)
         {
-
-            throw new Exception("Requested View not does not exist!");
+            base.InitRemotable(remote, config);
+            config["appPath"] = HttpRuntime.AppDomainAppVirtualPath.TrimEnd('/');
         }
-
     }
 }

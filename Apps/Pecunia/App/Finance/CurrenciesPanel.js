@@ -110,9 +110,7 @@
 				yField: 'Rate'
 			}]
 		});
-
-
-		var _self = this;
+		
 		Ext.apply(this, {
 			layout: 'border',
 			items: [{
@@ -130,7 +128,7 @@
 					height: 200,
 					border: false,
 					xtype: 'iframebox',
-					src: 'Content/Article/Currencies'
+					src: Dextop.getSession.absoluteUrl('Content/Article/Currencies')
 				}]
 			}]
 		});
