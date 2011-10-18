@@ -128,7 +128,7 @@
 					height: 200,
 					border: false,
 					xtype: 'iframebox',
-					src: Dextop.getSession.absoluteUrl('Content/Article/Currencies')
+					src: Dextop.getSession().absoluteUrl('Content/Article/Currencies')
 				}]
 			}]
 		});
