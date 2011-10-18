@@ -114,7 +114,7 @@
     <Content Include="client\css\icons\categories.png" />
     <Content Include="client\css\icons\contacts.png" />
     <Content Include="client\css\icons\depot.png" />
-    <Content Include="client\css\icons\home.png" />
+    <Content Include="client\css\icons\globe.png" />
     <Content Include="client\css\icons\house.png" />
     <Content Include="client\css\icons\kwallet.png" />
     <Content Include="client\css\icons\shares.png" />
