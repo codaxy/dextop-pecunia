@@ -93,7 +93,7 @@
                     height: 220,
                     border: false,
                     xtype: 'iframebox',
-                    src: 'Content/Article/Shares'
+                    src: Dextop.getSession().absoluteUrl('Content/Article/Shares')
                 }]
             }]
         });

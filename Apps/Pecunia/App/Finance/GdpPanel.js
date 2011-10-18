@@ -23,7 +23,7 @@
 				layout: 'border',
 				items: [{
 					xtype: 'iframebox',
-					src: 'Content/Article/GDP',
+					src: Dextop.getSession().absoluteUrl('Content/Article/GDP'),
 					region: 'north',
 					border: false,
 					height: 300

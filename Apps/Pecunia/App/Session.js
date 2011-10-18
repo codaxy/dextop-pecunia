@@ -22,7 +22,7 @@
 			items: [{
 				title: 'Welcome',
 				xtype: 'iframebox',
-				src: 'Content/Article/Welcome',
+				src: this.absoluteUrl('Content/Article/Welcome'),
 				border: false
 			}]
 		});
@@ -66,5 +66,18 @@
 					this.tabs.setActiveTab(panel);
 			}
 		});
+	},
+
+	absoluteUrl: function (url) {
+		if (url.substring(this.appPath) == 0)
+			return url;
+		var res = this.appPath;
+		if (url) {
+			if (url[0] == '/')
+				res += url;
+			else
+				res += '/' + url;
+		}
+		return res;
 	}
 });
