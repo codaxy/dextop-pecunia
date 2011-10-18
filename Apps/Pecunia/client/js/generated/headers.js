@@ -1,46 +1,3 @@
-Ext.define('Pecunia.columns.RichPerson', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Name"] = {
-			text: this.NameText,
-			flex: 1,
-			dataIndex: 'Name',
-			type: 'string'
-		};
-		dict["Fortune"] = {
-			text: this.FortuneText,
-			width: 100,
-			dataIndex: 'Fortune',
-			type: 'float'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Name'], dict['Fortune']];
-	},
-	NameText: 'Name',
-	FortuneText: 'Fortune (B$)'
-});
-Ext.define('Pecunia.GdpPanel.columns.ReportType', {
-	extend: 'Dextop.ItemFactory',
-	getDictionary: function(){
-		var dict = {};
-		dict["Title"] = {
-			text: this.TitleText,
-			flex: 1,
-			dataIndex: 'Title',
-			type: 'string'
-		};
-		return dict;
-
-	},
-	buildItems: function(dict){
-		return [dict['Title']];
-	},
-	TitleText: 'Title'
-});
 Ext.define('Pecunia.CurrenciesPanel.columns.RateModel', {
 	extend: 'Dextop.ItemFactory',
 	getDictionary: function(){
@@ -79,6 +36,49 @@ Ext.define('Pecunia.CurrenciesPanel.columns.RateModel', {
 	RateText: 'Rate',
 	AmountText: 'Amount',
 	ISOCodeText: 'ISO'
+});
+Ext.define('Pecunia.GdpPanel.columns.ReportType', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Title"] = {
+			text: this.TitleText,
+			flex: 1,
+			dataIndex: 'Title',
+			type: 'string'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Title']];
+	},
+	TitleText: 'Title'
+});
+Ext.define('Pecunia.columns.RichPerson', {
+	extend: 'Dextop.ItemFactory',
+	getDictionary: function(){
+		var dict = {};
+		dict["Name"] = {
+			text: this.NameText,
+			flex: 1,
+			dataIndex: 'Name',
+			type: 'string'
+		};
+		dict["Fortune"] = {
+			text: this.FortuneText,
+			width: 100,
+			dataIndex: 'Fortune',
+			type: 'float'
+		};
+		return dict;
+
+	},
+	buildItems: function(dict){
+		return [dict['Name'], dict['Fortune']];
+	},
+	NameText: 'Name',
+	FortuneText: 'Fortune (B$)'
 });
 Ext.define('Pecunia.columns.Stock', {
 	extend: 'Dextop.ItemFactory',
