@@ -57,6 +57,10 @@ Ext.define('Pecunia.model.RichPerson',
 		name: 'Extra',
 		type: 'string',
 		useNull: true
+	}, {
+		name: 'IsLocked',
+		type: 'boolean',
+		useNull: true
 	}],
 	idProperty: 'Id'
 });

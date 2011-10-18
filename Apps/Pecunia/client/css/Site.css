@@ -199,3 +199,9 @@ body
     background-image: url('icons/kwallet.png');
     background-repeat: no-repeat;
 }
+
+/* ------------------- Grid -------------------- */
+.x-grid-row
+{
+    cursor: pointer;
+}
