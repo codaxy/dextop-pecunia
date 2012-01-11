@@ -64,20 +64,6 @@ Ext.define('Pecunia.model.RichPerson',
 	}],
 	idProperty: 'Id'
 });
-Ext.define('Pecunia.model.CurrencyHistoryRate',
-{
-	extend: 'Ext.data.Model',
-	fields: [{
-		name: 'Date',
-		type: 'date',
-		useNull: true
-	}, {
-		name: 'Rate',
-		type: 'float',
-		useNull: true
-	}],
-	idProperty: 'Date'
-});
 Ext.define('Pecunia.GdpPanel.model.ReportType',
 {
 	extend: 'Ext.data.Model',
@@ -92,27 +78,19 @@ Ext.define('Pecunia.GdpPanel.model.ReportType',
 	}],
 	idProperty: 'ReportId'
 });
-Ext.define('Pecunia.CurrenciesPanel.model.RateModel',
+Ext.define('Pecunia.model.CurrencyHistoryRate',
 {
 	extend: 'Ext.data.Model',
 	fields: [{
-		name: 'Currency',
-		type: 'string',
+		name: 'Date',
+		type: 'date',
 		useNull: true
 	}, {
 		name: 'Rate',
 		type: 'float',
 		useNull: true
-	}, {
-		name: 'Amount',
-		type: 'float',
-		useNull: true
-	}, {
-		name: 'ISOCode',
-		type: 'string',
-		useNull: true
 	}],
-	idProperty: 'ISOCode'
+	idProperty: 'Date'
 });
 Ext.define('Pecunia.model.Stock',
 {
@@ -139,6 +117,28 @@ Ext.define('Pecunia.model.Stock',
 		useNull: true
 	}],
 	idProperty: 'Name'
+});
+Ext.define('Pecunia.CurrenciesPanel.model.RateModel',
+{
+	extend: 'Ext.data.Model',
+	fields: [{
+		name: 'Currency',
+		type: 'string',
+		useNull: true
+	}, {
+		name: 'Rate',
+		type: 'float',
+		useNull: true
+	}, {
+		name: 'Amount',
+		type: 'float',
+		useNull: true
+	}, {
+		name: 'ISOCode',
+		type: 'string',
+		useNull: true
+	}],
+	idProperty: 'ISOCode'
 });
 Ext.define('Pecunia.UsersPanel.model.User',
 {
