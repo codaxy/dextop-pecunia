@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxMin">
-      <HintPath>..\..\packages\AjaxMin.4.30.4295.16112\lib\AjaxMin.dll</HintPath>
+    <Reference Include="AjaxMin, Version=4.41.4378.21434, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AjaxMin.4.41.4378.21434\lib\net20\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.CodeReports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Codaxy.CodeReports.0.1.4\lib\Codaxy.CodeReports.dll</HintPath>
@@ -56,7 +56,7 @@
       <HintPath>..\..\packages\Codaxy.Common.Localization.0.5.5\lib\Codaxy.Common.Localization.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Dextop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Codaxy.Dextop.Core.0.7.15\lib\Codaxy.Dextop.dll</HintPath>
+      <HintPath>..\..\packages\Codaxy.Dextop.Core.1.0.7.4\lib\Codaxy.Dextop.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Xlio">
       <HintPath>..\..\packages\Codaxy.Xlio.0.8.5\lib\Codaxy.Xlio.dll</HintPath>
@@ -67,9 +67,8 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
@@ -176,8 +175,8 @@
     <Content Include="client\lib\dextop\js\Ext.patch.js" />
     <Content Include="client\lib\dextop\js\Ext.tweaks.js" />
     <Content Include="client\lib\dextop\js\generated\dummy.txt" />
-    <Content Include="client\lib\dextop\js\generated\remote.js" />
     <Content Include="client\lib\dextop\js\ItemFactory.js" />
+    <Content Include="client\lib\dextop\js\locale\dextop-da.js" />
     <Content Include="client\lib\dextop\js\locale\dextop-ru.js" />
     <Content Include="client\lib\dextop\js\locale\dextop-sr.js" />
     <Content Include="client\lib\dextop\js\Panel.js" />
