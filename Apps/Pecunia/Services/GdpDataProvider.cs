@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Codaxy.Dextop;
+using System.Diagnostics;
 
 namespace Pecunia.Services
 {
@@ -47,25 +48,25 @@ namespace Pecunia.Services
 				var countryId = indicator["country"].Value<String>("id");
 				var indicatorValue =  indicator.Value<decimal?>("value");
 
-				if (indicatorValue.HasValue)
-				{
-					var key = countryId + year;
-					var e = countryData.GetOrAdd(key, new CountryData { ID = key, Year = year, Country = country });
+                if (indicatorValue.HasValue)
+                {
+                    var key = countryId + year;
+                    var e = countryData.GetOrAdd(key, new CountryData { ID = key, Year = year, Country = country });
 
-					setter(e, indicatorValue);
-				}
-			}			
+                    setter(e, indicatorValue);
+                }
+			}
 		}
 
 		public static string CacheFilePath { get; set; }
 
 		public static IList<CountryData> GetData()
-		{
+        {
 			lock (countryData)
 			{
 				if (countryData.Count == 0)
 				{
-					if (CacheFilePath!=null && File.Exists(CacheFilePath) && File.GetLastWriteTime(CacheFilePath).Date == DateTime.Today)
+					if (CacheFilePath!=null && File.Exists(CacheFilePath) && File.GetLastWriteTime(CacheFilePath).Date == DateTime.Today && false)
 					{
 						using (var jtr = new JsonTextReader(new StreamReader(CacheFilePath)))
 						{
@@ -77,8 +78,9 @@ namespace Pecunia.Services
 					else
 					{
 
-						var lastYear = DateTime.Today.Year - 1;
-						var firstYear = lastYear - 4;
+                        var lastYear = DateTime.Today.Year - 1;
+
+                        var firstYear = lastYear - 5;
 						string gdpServiceUrl = String.Format(indicatorServiceUrl, Indicators.Gdp, firstYear, lastYear);
 						string gdpGrowthServiceUrl = String.Format(indicatorServiceUrl, Indicators.GdpGrowthRate, firstYear, lastYear);
 						string gniPerCapitaServiceUrl = String.Format(indicatorServiceUrl, Indicators.GniPerCapita, firstYear, lastYear);
@@ -88,6 +90,16 @@ namespace Pecunia.Services
 						() => { FetchIndicator(gdpGrowthServiceUrl, (c, v) => { c.GDPGrowth = v; });},
 						() => { FetchIndicator(gniPerCapitaServiceUrl, (c, v) => { c.GniPerCapita = v; });}
 					});
+
+                        var maxYear = countryData.Max(a => a.Value.Year);
+                        var minYear = countryData.Min(a => a.Value.Year);
+
+                        if (maxYear == lastYear)
+                        {
+                            CountryData cData = null;
+                            foreach (var item in countryData.Where(a => a.Value.Year == minYear))
+                                countryData.TryRemove(item.Key, out cData);
+                        }
 
 						if (CacheFilePath != null)
 						{

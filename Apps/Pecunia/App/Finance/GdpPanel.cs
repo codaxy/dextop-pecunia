@@ -67,6 +67,7 @@ namespace Pecunia.App.Finance
 				default:
 					throw new InvalidOperationException("Invalid report type.");
 			}
+            
 
 			try
 			{
