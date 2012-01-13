@@ -56,7 +56,7 @@
       <HintPath>..\..\packages\Codaxy.Common.Localization.0.5.5\lib\Codaxy.Common.Localization.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Dextop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Codaxy.Dextop.Core.0.7.15\lib\Codaxy.Dextop.dll</HintPath>
+      <HintPath>..\..\packages\Codaxy.Dextop.Core.1.0.7.0\lib\Codaxy.Dextop.dll</HintPath>
     </Reference>
     <Reference Include="Codaxy.Xlio">
       <HintPath>..\..\packages\Codaxy.Xlio.0.8.5\lib\Codaxy.Xlio.dll</HintPath>

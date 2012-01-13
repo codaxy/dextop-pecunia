@@ -10,6 +10,8 @@ namespace Pecunia.Model
     public class CurrencyHistoryRate
     {
         [DextopModelId]
+        public int Id { get; set; }
+
         public DateTime Date { get; set; }
         public decimal? Rate { get; set; }
     }

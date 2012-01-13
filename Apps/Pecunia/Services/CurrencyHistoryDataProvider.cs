@@ -18,11 +18,15 @@ namespace Pecunia.Services
 
         public static CurrencyHistoryRate[] GetCurrencyRateHistory(String ISOCode)
         {
-            return GetCurrencyList().SelectMany(a => a.Rates.Where(b => b.ISOCode == ISOCode).Select(c => new CurrencyHistoryRate
+            var res = GetCurrencyList().SelectMany(a => a.Rates.Where(b => b.ISOCode == ISOCode).Select(c => new CurrencyHistoryRate
             {
                 Date = a.Date,
                 Rate = c.Rate,
             })).ToArray();
+            
+            for (var i = 0; i < res.Length; i++)
+                res[i].Id = i;
+            return res;
         }
 
         public static CurrencyHistoryRate[] GetCurrencyRateComparisionHistory(String ISOCode, String baseCurrencyISOCode)

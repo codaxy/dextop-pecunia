@@ -90,9 +90,7 @@
 
 
 		var chart = Ext.create('Ext.chart.Chart', {
-			region: 'center',
-			width: 400,
-			height: 300,
+			region: 'center',			
 			store: historyStore,
 			axes: [{
 				type: 'Numeric',
@@ -100,13 +98,13 @@
 				fields: ['Rate']
 			}, {
 				type: 'Time',
-				dateFormat: 'd.m.y',
+				dateFormat: 'd.m.y',				
 				position: 'bottom',
 				fields: ['Date']
 			}],
 			series: [{
-				type: 'line',
-				xField: 'Date',
+				type: 'line',				
+				xField: 'Id',
 				yField: 'Rate'
 			}]
 		});
