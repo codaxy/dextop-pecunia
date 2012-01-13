@@ -17,7 +17,7 @@
 				border: true,
 				margin: '1'
 			}, {
-				region: 'west',
+			    region: 'west',
 				border: false,
 				width: 300,
 				layout: 'border',

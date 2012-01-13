@@ -6,20 +6,20 @@ Ext.define('Pecunia.CurrenciesPanel.form.ConvertForm', {
 		var dict = {};
 		dict["Amount"] = {
 			name: 'Amount',
-			xtype: 'textfield',
+			fieldLabel: this.AmountFieldLabelText,
+			xtype: 'numberfield',
 			width: 100,
 			value: options.data['Amount'],
-			fieldLabel: 'Amount',
 			labelAlign: 'top'
 		};
 		dict["Currency"] = {
 			name: 'Currency',
+			fieldLabel: this.CurrencyFieldLabelText,
 			xtype: 'combo',
 			width: 200,
 			value: options.data['Currency'],
-			fieldLabel: 'Currency',
-			labelAlign: 'top',
 			store: options.remote.createStore('Currency'),
+			labelAlign: 'top',
 			valueField: 'id',
 			queryMode: 'local',
 			forceSelection: true,
@@ -31,7 +31,9 @@ Ext.define('Pecunia.CurrenciesPanel.form.ConvertForm', {
 	},
 	buildItems: function(dict){
 		return [dict['Amount'], dict['Currency']];
-	}
+	},
+	AmountFieldLabelText: 'Amount',
+	CurrencyFieldLabelText: 'Currency'
 });
 
 Ext.define('Pecunia.form.RichPerson', {
@@ -42,96 +44,96 @@ Ext.define('Pecunia.form.RichPerson', {
 		var dict = {};
 		dict["Name"] = {
 			name: 'Name',
+			fieldLabel: this.NameFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['Name'],
-			fieldLabel: 'Name'
+			value: options.data['Name']
 		};
 		dict["DOB"] = {
 			name: 'DOB',
+			fieldLabel: this.DOBFieldLabelText,
 			xtype: 'textfield',
-			value: options.data['DOB'],
-			fieldLabel: 'DOB'
+			value: options.data['DOB']
 		};
 		dict["PhotoUrl"] = {
 			name: 'PhotoUrl',
+			fieldLabel: this.PhotoUrlFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['PhotoUrl'],
-			fieldLabel: 'Photo URL'
+			value: options.data['PhotoUrl']
 		};
 		dict["WikipediaUrl"] = {
 			name: 'WikipediaUrl',
+			fieldLabel: this.WikipediaUrlFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['WikipediaUrl'],
-			fieldLabel: 'Wikipedia URL'
+			value: options.data['WikipediaUrl']
 		};
 		dict["Nationality"] = {
 			name: 'Nationality',
+			fieldLabel: this.NationalityFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['Nationality'],
-			fieldLabel: 'Nationality'
+			value: options.data['Nationality']
 		};
 		dict["Religion"] = {
 			name: 'Religion',
+			fieldLabel: this.ReligionFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['Religion'],
-			fieldLabel: 'Religion'
+			value: options.data['Religion']
 		};
 		dict["Children"] = {
 			name: 'Children',
+			fieldLabel: this.ChildrenFieldLabelText,
 			xtype: 'numberfield',
-			value: options.data['Children'],
-			fieldLabel: 'Children'
+			value: options.data['Children']
 		};
 		dict["Business"] = {
 			name: 'Business',
+			fieldLabel: this.BusinessFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['Business'],
-			fieldLabel: 'Business'
+			value: options.data['Business']
 		};
 		dict["Fortune"] = {
 			name: 'Fortune',
-			xtype: 'textfield',
-			value: options.data['Fortune'],
-			fieldLabel: 'Fortune US$ (billion)'
+			fieldLabel: this.FortuneFieldLabelText,
+			xtype: 'numberfield',
+			value: options.data['Fortune']
 		};
 		dict["Occupation"] = {
 			name: 'Occupation',
+			fieldLabel: this.OccupationFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
-			value: options.data['Occupation'],
-			fieldLabel: 'Occupation'
+			value: options.data['Occupation']
 		};
 		dict["Bio"] = {
 			name: 'Bio',
+			fieldLabel: this.BioFieldLabelText,
 			xtype: 'textarea',
 			anchor: '0',
 			value: options.data['Bio'],
-			fieldLabel: 'Bio',
-			labelAlign: 'top',
-			height: 200
+			height: 200,
+			labelAlign: 'top'
 		};
 		dict["ExtraTitle"] = {
 			name: 'ExtraTitle',
+			fieldLabel: this.ExtraTitleFieldLabelText,
 			xtype: 'textfield',
 			anchor: '0',
 			value: options.data['ExtraTitle'],
-			fieldLabel: 'Title',
 			labelAlign: 'top'
 		};
 		dict["Extra"] = {
 			name: 'Extra',
+			fieldLabel: this.ExtraFieldLabelText,
 			xtype: 'textarea',
 			anchor: '0',
 			value: options.data['Extra'],
-			fieldLabel: 'Extra',
-			labelAlign: 'top',
-			height: 200
+			height: 200,
+			labelAlign: 'top'
 		};
 		dict["tab"] = {
 			itemId: 'tab',
@@ -172,6 +174,19 @@ Ext.define('Pecunia.form.RichPerson', {
 	},
 	buildItems: function(dict){
 		return [dict['Name'], dict['tab']];
-	}
+	},
+	NameFieldLabelText: 'Name',
+	DOBFieldLabelText: 'DOB',
+	PhotoUrlFieldLabelText: 'Photo URL',
+	WikipediaUrlFieldLabelText: 'Wikipedia URL',
+	NationalityFieldLabelText: 'Nationality',
+	ReligionFieldLabelText: 'Religion',
+	ChildrenFieldLabelText: 'Children',
+	BusinessFieldLabelText: 'Business',
+	FortuneFieldLabelText: 'Fortune US$ (billion)',
+	OccupationFieldLabelText: 'Occupation',
+	BioFieldLabelText: 'Bio',
+	ExtraTitleFieldLabelText: 'Title',
+	ExtraFieldLabelText: 'Extra'
 });
 

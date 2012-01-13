@@ -10,7 +10,13 @@ namespace Pecunia
     {
         protected override void RegisterModules()
         {
-			RegisterModule("client/lib/ext", new DextopExtJSModule { CssThemeSuffix = "-gray" });
+#if DEBUG
+            var debug = true;
+#else
+            var debug = false;
+#endif
+
+            RegisterModule("client/lib/ext", new DextopExtJSModule { CssThemeSuffix = "-gray", Debug = debug });
             RegisterModule("client/lib/dextop", new DextopCoreModule());
             RegisterModule("", new AppModule());            
         }

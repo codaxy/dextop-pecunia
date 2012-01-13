@@ -28,7 +28,7 @@
 		});
 
 		this.viewport = Ext.create('Ext.container.Viewport', {
-			renderTo: document.body,
+			//renderTo: document.body,
 			layout: 'border',
 			items: [navigation, {
 				el: 'header',
