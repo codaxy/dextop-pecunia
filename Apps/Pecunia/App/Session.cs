@@ -13,6 +13,7 @@ namespace Pecunia.App
         {
             base.InitRemotable(remote, config);
             config["appPath"] = HttpRuntime.AppDomainAppVirtualPath.TrimEnd('/');
+            config["versionNumber"] = Pecunia.Services.AssemblyService.GetVersionNumber();
         }
     }
 }

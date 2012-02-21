@@ -31,16 +31,18 @@
 			//renderTo: document.body,
 			layout: 'border',
 			items: [navigation, {
-				el: 'header',
+				//el: 'header',
 				region: 'north',
 				height: 50,
-				xtype: 'container'
+				xtype: 'container',
+				html: '<div id="header"><h1>Pecunia</h1></div>'
 			}, this.tabs, {
-				el: 'footer',
+				//el: 'footer',
 				region: 'south',
 				height: 20,
 				xtype: 'container',
-				border: false
+				border: false,
+				html: '<div id="footer">Pecunia v'+ this.versionNumber + ' Copyright © Codaxy 2011</div>'
 			}]
 		});
 
