@@ -15,8 +15,8 @@ namespace Pecunia
 #else
             var debug = false;
 #endif
-
-            RegisterModule("client/lib/ext", new DextopExtJSModule { CssThemeSuffix = "-gray", Debug = debug });
+            
+            RegisterModule("client/lib/ext", new DextopExtJSModule { Debug = debug, CssThemeSuffix = "-gray" });
             RegisterModule("client/lib/dextop", new DextopCoreModule());
             RegisterModule("", new AppModule());            
         }
