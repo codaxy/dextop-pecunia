@@ -15,8 +15,15 @@ namespace Pecunia
 #else
             var debug = false;
 #endif
+            /// TODO: Replace this in your application 
+            /// with path to your local Ext repository
             
-            RegisterModule("client/lib/ext", new DextopExtJSModule { Debug = debug, CssThemeSuffix = "-gray" });
+            RegisterModule("http://dextop.codaxy.com/ext/extjs-4.1.1-rc2", new DextopExtJSModule
+            {
+                CssThemeSuffix = "-gray",
+                UsingExternalResources = true,
+                Debug = debug
+            });
             RegisterModule("client/lib/dextop", new DextopCoreModule());
             RegisterModule("", new AppModule());            
         }

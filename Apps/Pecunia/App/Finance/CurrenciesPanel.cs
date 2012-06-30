@@ -17,6 +17,8 @@ namespace Pecunia.App.Finance
 {
     public class CurrenciesPanel : DextopWindow
     {
+        string defaultCurrency = "USD";
+
         [DextopRemotableConstructor(alias = "currencies")]
         public CurrenciesPanel()
         {
@@ -36,13 +38,13 @@ namespace Pecunia.App.Finance
 			config["convertData"] = new ConvertForm
 			{
 				Amount = 100,
-				Currency = "EUR"
+                Currency = defaultCurrency
 			};
         }
 
 		RateModel[] Load(DextopReadFilter filter)
-		{			
-			var currency = filter.Params.SafeGet("Currency", "EUR");
+		{
+            var currency = filter.Params.SafeGet("Currency", defaultCurrency);
 			var amount = filter.Params.SafeGet("Amount", 100.0m);
 			
 			var data = CurrencyDataProvider.GetCurrencyList(currency);
@@ -59,7 +61,7 @@ namespace Pecunia.App.Finance
         {
             String iso;
             filter.Params.TryGet<String>("ISOCode", out iso);
-            var baseCurency = filter.Params.SafeGet<String>("BaseCurrencyISOCode", "EUR");
+            var baseCurency = filter.Params.SafeGet<String>("BaseCurrencyISOCode", defaultCurrency);
 
             if (baseCurency == "EUR")
                 return CurrencyHistoryDataProvider.GetCurrencyRateHistory(iso);

@@ -22,10 +22,8 @@ namespace Pecunia.Services
             {
                 Date = a.Date,
                 Rate = c.Rate,
-            })).ToArray();
+            })).ToArray();            
             
-            for (var i = 0; i < res.Length; i++)
-                res[i].Id = i;
             return res;
         }
 
