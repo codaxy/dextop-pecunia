@@ -18,7 +18,7 @@ namespace Pecunia
             /// TODO: Replace this in your application 
             /// with path to your local Ext repository
             
-            RegisterModule("http://dextop.codaxy.com/ext/extjs-4.1.1-rc2", new DextopExtJSModule
+            RegisterModule("http://cdn.sencha.io/ext-4.1.1-gpl", new DextopExtJSModule
             {
                 CssThemeSuffix = "-gray",
                 UsingExternalResources = true,
